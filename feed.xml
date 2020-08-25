@@ -5,7 +5,21 @@
         <title>Quarkus</title>
         <link>https://quarkus.io</link>
         <description>Quarkus: Supersonic Subatomic Java</description>
-        <lastBuildDate>Thu, 20 Aug 2020 17:18:00 +0000</lastBuildDate>
+        <lastBuildDate>Tue, 25 Aug 2020 15:03:23 +0000</lastBuildDate>
+        
+        <item>
+            <title>How to handle failures with Mutiny</title>
+            <link>
+                https://quarkus.io/blog/mutiny-failure-handling/
+            </link>
+            <description>
+                In the past week, I got several questions about failure handling with Mutiny. So, maybe it deserves a bit more explanation. Failures are events First, Mutiny is an event-driven reactive programming library. With Mutiny, you handle events. An upstream Uni or Multi propagates these events and gives you the possibility...
+            </description>
+            <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/mutiny-failure-handling/
+            </guid>
+        </item>
         
         <item>
             <title>Preview the new way to start coding with Quarkus</title>
@@ -130,20 +144,6 @@
             <pubDate>Thu, 25 Jun 2020 00:00:00 +0000</pubDate>
             <guid>
                 https://quarkus.io/blog/quarkus-newsletter-7/
-            </guid>
-        </item>
-        
-        <item>
-            <title>gRPC with Quarkus!</title>
-            <link>
-                https://quarkus.io/blog/quarkus-grpc/
-            </link>
-            <description>
-                In Quarkus 1.5, we shipped the first version of the gRPC Quarkus extension. If you are not familiar with gRPC, it&#8217;s a highly efficient Remote Procedure Call mechanism relying on HTTP/2 and Protobuf. You can implement and consume gRPC services from any language such as Go, JavaScript, Python, and Java....
-            </description>
-            <pubDate>Thu, 25 Jun 2020 00:00:00 +0000</pubDate>
-            <guid>
-                https://quarkus.io/blog/quarkus-grpc/
             </guid>
         </item>
         
