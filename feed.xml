@@ -5,7 +5,7 @@
         <title>Quarkus</title>
         <link>https://quarkus.io</link>
         <description>Quarkus: Supersonic Subatomic Java</description>
-        <lastBuildDate>Wed, 26 Aug 2020 14:58:56 +0000</lastBuildDate>
+        <lastBuildDate>Wed, 26 Aug 2020 15:06:23 +0000</lastBuildDate>
         
         <item>
             <title>From zero to hero on backporting pull requests</title>
@@ -64,12 +64,12 @@
         </item>
         
         <item>
-            <title>Quarkus Hackathon Finalists</title>
+            <title>Announcing Quarkus Supersonic, Subatomic Hackathon Finalist</title>
             <link>
                 https://quarkus.io/blog/quarkus-hackathon-finalist-announcement/
             </link>
             <description>
-                The Quarkus community is excited to announce the finalists for the Supersonic, Subatomic Java Hackathon. The submissions were outstanding and greatly exceeded our expectations. Thank you to all of the participants who submitted their Quarkus applications. Hackathon Highlights 330+ participants from 15+ countries 35+ applicaitons submitted 8+ hours of enablement...
+                Quarkus Hackathon Finalists The Quarkus community is excited to announce the finalists for the Supersonic, Subatomic Java Hackathon. The submissions were outstanding and greatly exceeded our expectations. Thank you to all of the participants who submitted their Quarkus applications. Hackathon Highlights 330+ participants from 15+ countries 35+ applicaitons submitted 8+...
             </description>
             <pubDate>Tue, 18 Aug 2020 00:00:00 +0000</pubDate>
             <guid>
