@@ -802,6 +802,18 @@ Environment variables names are following the conversion rules of <a href="https
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
+Environment variables without a configuration profile defined in <code>.env</code> file will overwrite all its related profiles in <code>application.properties</code>, e.g. <code>%test.application.value</code> is overwritten by <code>APPLICATION_VALUE</code> in <code>.env</code> file.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 The <code>config/application.properties</code> features is available in development mode as well. To make use of it, <code>config/application.properties</code> needs to be placed inside the build tool&#8217;s output directory (<code>target</code> for Maven and <code>build/classes/java/main</code> for Gradle).
 Keep in mind however that any cleaning operation from the build tool like <code>mvn clean</code> or <code>gradle clean</code> will remove the <code>config</code> directory as well.
 </td>
@@ -825,6 +837,15 @@ select between them via a profile name.</p>
 </div>
 <div class="paragraph">
 <p>The Quarkus HTTP port will be 9090, unless the <code>dev</code> profile is active, in which case it will be 8181.</p>
+</div>
+<div class="paragraph">
+<p>To use profiles in the <code>.env</code> file, you can follow a <code>_{PROFILE}_CONFIG_KEY=value</code> pattern. An equivalent of the above example in an <code>.env</code> file would be:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang=".env" class="language-.env hljs">QUARKUS_HTTP_PORT=9090
+_DEV_QUARKUS_HTTP_PORT=8181</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>By default Quarkus has three profiles, although it is possible to use as many as you like. The default profiles are:</p>

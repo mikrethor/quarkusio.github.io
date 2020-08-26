@@ -82,6 +82,8 @@
     <div class="hide-mobile toc"><ul class="sectlevel1">
 <li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#login-to-google-cloud">Login to Google Cloud</a></li>
+<li><a href="#the-quickstart">The Quickstart</a></li>
+<li><a href="#creating-the-maven-deployment-project">Creating the Maven Deployment Project</a></li>
 <li><a href="#the-code">The Code</a></li>
 <li><a href="#choose">Choose Your Function</a></li>
 <li><a href="#build-and-deploy">Build and Deploy</a></li>
@@ -98,7 +100,6 @@
 <li><a href="#background-functions-cloud-storage-2">Background Functions - Cloud Storage</a></li>
 </ul>
 </li>
-<li><a href="#deploying-http-functions-via-funqy">Deploying HTTP Functions via Funqy</a></li>
 <li><a href="#whats-next">What&#8217;s next?</a></li>
 </ul></div>
     <div>
@@ -183,6 +184,55 @@ Feedback is welcome on our <a href="https://groups.google.com/d/forum/quarkus-de
 </div>
 </div>
 <div class="sect1">
+<h2 id="the-quickstart"><a class="anchor" href="#the-quickstart"></a>The Quickstart</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Clone the Git repository: <code>git clone <a href="https://github.com/quarkusio/quarkus-quickstarts.git" class="bare">https://github.com/quarkusio/quarkus-quickstarts.git</a></code>, or download an <a href="https://github.com/quarkusio/quarkus-quickstarts/archive/master.zip">archive</a>.</p>
+</div>
+<div class="paragraph">
+<p>The solution is located in the <code>funqy-google-cloud-functions-quickstart</code> <a href="https://github.com/quarkusio/quarkus-quickstarts/tree/master/funqy-quickstarts/funqy-google-cloud-functions-quickstart">directory</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-the-maven-deployment-project"><a class="anchor" href="#creating-the-maven-deployment-project"></a>Creating the Maven Deployment Project</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create an application with the <code>quarkus-funqy-google-cloud-functions</code> extension.
+You can use the following Maven command to create it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="shell" class="language-shell hljs">mvn io.quarkus:quarkus-maven-plugin:1.7.0.Final:create \
+    -DprojectGroupId=org.acme \
+    -DprojectArtifactId=funqy-google-cloud-functions \
+    -DclassName="org.acme.quickstart.GreetingResource" \
+    -Dpath="/hello" \
+    -Dextensions="funqy-google-cloud-functions"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, let&#8217;s remove what&#8217;s not needed inside the generated application:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Remove the dependency <code>io.quarkus:quarkus-reasteasy</code> from your <code>pom.xml</code> file.</p>
+</li>
+<li>
+<p>Remove the generated <code>org.acme.quickstart.GreetingResource</code> class.</p>
+</li>
+<li>
+<p>Remove the <code>index.html</code> from <code>resources/META-INF/resources</code> or it will be picked up instead of your Function.</p>
+</li>
+<li>
+<p>Remove the existing tests.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="the-code"><a class="anchor" href="#the-code"></a>The Code</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -242,16 +292,15 @@ import io.quarkus.funqy.gcp.functions.event.StorageEvent;
 
 public class GreetingFunctions {
 
-    @Inject
-    GreetingService service;
+    @Inject GreetingService service; <i class="conum" data-value="1"></i><b>(1)</b>
 
-    @Funq <i class="conum" data-value="1"></i><b>(1)</b>
+    @Funq <i class="conum" data-value="2"></i><b>(2)</b>
     public void helloPubSubWorld(PubsubMessage pubSubEvent) {
-        String message = service.hello("world");
+        String message = service.hello(pubSubEvent.data);
         System.out.println(pubSubEvent.messageId + " - " + message);
     }
 
-    @Funq <i class="conum" data-value="2"></i><b>(2)</b>
+    @Funq <i class="conum" data-value="3"></i><b>(3)</b>
     public void helloGCSWorld(StorageEvent storageEvent) {
         String message = service.hello("world");
         System.out.println(storageEvent.name + " - " + message);
@@ -274,6 +323,9 @@ Function return type can also be Mutiny reactive types.
 </div>
 <div class="olist arabic">
 <ol class="arabic">
+<li>
+<p>Injection works inside your function.</p>
+</li>
 <li>
 <p>This is a background function that takes as parameter a <code>io.quarkus.funqy.gcp.functions.event.PubsubMessage</code>,
 this is a convenient class to deserialize a PubSub message.</p>
@@ -302,7 +354,7 @@ They are not mandatory to use, you can use any object you want.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="property" class="language-property hljs">quarkus.funqy.export=helloHttpWorld</code></pre>
+<pre class="highlightjs highlight"><code data-lang="property" class="language-property hljs">quarkus.funqy.export=helloPubSubWorld</code></pre>
 </div>
 </div>
 </div>
@@ -365,7 +417,7 @@ define that this function will be triggered by all message publication inside th
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">gcloud functions call quarkus-example-funky-pubsub --data '{"data":"Hello, Pub/Sub"}'</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">gcloud functions call quarkus-example-funky-pubsub --data '{"data":"Pub/Sub"}'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -406,7 +458,7 @@ define that this function will be triggered by all new file inside this bucket.<
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">gcloud functions call quarkus-example-funky-pubsub --data '{"name":"test.txt"}'</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">gcloud functions call quarkus-example-funky-storage --data '{"name":"test.txt"}'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -454,7 +506,7 @@ define that this function will be triggered by all new file inside this bucket.<
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">curl localhost:8080 -d '{"data":{"data":"hello"}}'</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">curl localhost:8080 -d '{"data":{"data":"world"}}'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -484,18 +536,6 @@ define that this function will be triggered by all new file inside this bucket.<
 <div class="paragraph">
 <p>This will call your PubSub background function with a Cloud Storage event <code>{"name":"file.txt"}</code>, so an event on the <code>file.txt</code> file.</p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="deploying-http-functions-via-funqy"><a class="anchor" href="#deploying-http-functions-via-funqy"></a>Deploying HTTP Functions via Funqy</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can use <a href="funqy-http">Funqy HTTP</a> on Google Cloud Functions.
-This allows you to invoke on multiple Funqy functions using HTTP deployed as one Google Cloud Function.</p>
-</div>
-<div class="paragraph">
-<p>For this you need to include both <code>quarkus-funqy-http</code> and <code>quarkus-google-cloud-functions</code> extension.</p>
 </div>
 </div>
 </div>

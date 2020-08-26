@@ -82,8 +82,13 @@
     <div class="hide-mobile toc"><ul class="sectlevel1">
 <li><a href="#basic-auth">Basic Authentication</a></li>
 <li><a href="#form-auth">Form Based Authentication</a></li>
-<li><a href="#mutual-tls">Mutual TLS Authentication</a></li>
+<li><a href="#mutual-tls">Mutual TLS Authentication</a>
+<ul class="sectlevel2">
+<li><a href="#authorization">Authorization</a></li>
+</ul>
+</li>
 <li><a href="#proactive-authentication">Proactive Authentication</a></li>
+<li><a href="#references">References</a></li>
 </ul></div>
     <div>
       <div id="preamble">
@@ -118,7 +123,7 @@ be read by all members of the cluster (provided they all share the same encrypti
 <p>The encryption key can be set using the <code>quarkus.http.auth.session.encryption-key</code> property, and it must be at least 16 characters
 long. This key is hashed using SHA-256 and the resulting digest is used as a key for AES-256 encryption of the cookie
 value. This cookie contains an expiry time as part of the encrypted value, so all nodes in the cluster must have their
-clocks synchronised. At one minute intervals a new cookie will be generated with an updated expiry time if the session
+clocks synchronized. At one minute intervals a new cookie will be generated with an updated expiry time if the session
 is in use.</p>
 </div>
 <div class="paragraph">
@@ -349,8 +354,18 @@ public String hello() {
 <div id="x509-credential-example" class="listingblock">
 <div class="title">Obtaining the certificate</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">CertificateCredential credential = identity.getCredential(CertificateCredential.class);
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">import java.security.cert.X509Certificate;
+import io.quarkus.security.credential.CertificateCredential;
+
+CertificateCredential credential = identity.getCredential(CertificateCredential.class);
 X509Certificate certificate = credential.getCertificate();</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="authorization"><a class="anchor" href="#authorization"></a>Authorization</h3>
+<div class="paragraph">
+<p>The information from the client certificate can be used to enhance Quarkus <code>SecurityIdentity</code>. For example, one can add new roles after checking a client certificate subject name, etc.
+Please see the <a href="security-customization#security-identity-customization">SecurityIdentity Customization</a> section for more information about customizing Quarkus <code>SecurityIdentity</code>.</p>
 </div>
 </div>
 </div>
@@ -364,7 +379,19 @@ credential then that request will always be authenticated (even if the target pa
 </div>
 <div class="paragraph">
 <p>This means that requests with an invalid credential will always be rejected, even for public pages. You can change
-this behaviour and only authenticate when required by setting <code>quarkus.http.auth.proactive=false</code>.</p>
+this behavior and only authenticate when required by setting <code>quarkus.http.auth.proactive=false</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="references"><a class="anchor" href="#references"></a>References</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="security">Quarkus Security</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>

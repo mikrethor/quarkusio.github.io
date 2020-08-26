@@ -80,7 +80,9 @@
   <div class="width-12-12">
     <h1 class="text-caps">Quarkus - Building a Native Executable</h1>
     <div class="hide-mobile toc"><ul class="sectlevel1">
-<li><a href="#prerequisites">Prerequisites</a>
+<li><a href="#graalvm">GraalVM</a></li>
+<li><a href="#prerequisites-for-mandrel">Prerequisites for Mandrel</a></li>
+<li><a href="#prerequisites-for-oracle-graalvm-ceee">Prerequisites for Oracle GraalVM CE/EE</a>
 <ul class="sectlevel2">
 <li><a href="#configuring-graalvm">Configuring GraalVM</a></li>
 </ul>
@@ -101,6 +103,7 @@
 <li><a href="#using-a-multi-stage-docker-build">Using a multi-stage Docker build</a></li>
 </ul>
 </li>
+<li><a href="#debugging-native-executable">Debugging native executable</a></li>
 <li><a href="#configuration-reference">Configuring the Native Executable</a></li>
 <li><a href="#whats-next">What&#8217;s next?</a></li>
 </ul></div>
@@ -118,6 +121,9 @@
 <li>
 <p>Packaging the native executable in a container</p>
 </li>
+<li>
+<p>Debugging native executable</p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -126,7 +132,93 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
+<h2 id="graalvm"><a class="anchor" href="#graalvm"></a>GraalVM</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Building a native executable requires using a distribution of GraalVM.
+There are three distributions:
+Oracle GraalVM Community Edition (CE), Oracle GraalVM Enterprise Edition (EE) and Mandrel.
+The differences between the Oracle and Mandrel distributions are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Mandrel is a downstream distribution of the Oracle GraalVM CE.
+Mandrel&#8217;s main goal is to provide a way to build native executables specifically designed to support Quarkus.</p>
+</li>
+<li>
+<p>Mandrel releases are built from a code base derived from the upstream Oracle GraalVM CE code base,
+with only minor changes but some significant exclusions that are not necessary for Quarkus native apps.
+They support the same capabilities to build native executables as Oracle GraalVM CE,
+with no significant changes to functionality.
+Notably, they do not include support for polyglot programming.
+The reason for these exclusions is to provide a better level of support for the majority of Quarkus users.
+These exclusions also mean Mandrel offers a considerable reduction in its distribution size
+when compared with Oracle GraalVM CE/EE.</p>
+</li>
+<li>
+<p>Mandrel is built slightly differently to Oracle GraalVM CE, using the standard OpenJDK project.
+This means that it does not profit from a few small enhancements that Oracle have added to the version of OpenJDK used to build their own GraalVM downloads.
+This enhancements are omitted because upstream OpenJDK does not manage them, and cannot vouch for.
+This is particularly important when it comes to conformance and security.</p>
+</li>
+<li>
+<p>Mandrel is only available for projects that can be compiled with Java 11.
+If you are using Java 8,
+you should consider using Oracle GraalVM instead.
+The reason for not using Java 8 is because it&#8217;s a legacy release,
+which most Quarkus users are unlikely to need.</p>
+</li>
+<li>
+<p>Mandrel is currently only recommended for building native executables that target Linux containerized environments.
+This means that Mandrel users should use containers to build their native executables.
+If you are building native executables for macOS or Windows target platforms,
+you should consider using Oracle GraalVM instead,
+because Mandrel does not currently target these platforms.
+Building native executables directly on bare metal Linux is possible,
+with details available in the <a href="https://github.com/graalvm/mandrel/blob/master/README-Mandrel.md">Mandrel README</a>
+and <a href="https://github.com/graalvm/mandrel/releases">Mandrel releases</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The prerequisites vary slightly depending on whether you are using Oracle GraalVM CE/EE or Mandrel.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="prerequisites-for-mandrel"><a class="anchor" href="#prerequisites-for-mandrel"></a>Prerequisites for Mandrel</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To complete this guide using Mandrel, you need:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>less than 15 minutes</p>
+</li>
+<li>
+<p>an IDE</p>
+</li>
+<li>
+<p>JDK 11 installed with <code>JAVA_HOME</code> configured appropriately</p>
+</li>
+<li>
+<p>A working container runtime (Docker, podman)</p>
+</li>
+<li>
+<p>The code of the application developed in the <a href="getting-started">Getting Started Guide</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Skip to <a href="#container-runtime">this section</a> to continue with the guide for Mandrel,
+and follow the Mandrel-specific instructions in that section.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="prerequisites-for-oracle-graalvm-ceee"><a class="anchor" href="#prerequisites-for-oracle-graalvm-ceee"></a>Prerequisites for Oracle GraalVM CE/EE</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>To complete this guide, you need:</p>
@@ -140,7 +232,7 @@
 <p>an IDE</p>
 </li>
 <li>
-<p>JDK 8 installed with <code>JAVA_HOME</code> configured appropriately</p>
+<p>JDK 11 installed with <code>JAVA_HOME</code> configured appropriately</p>
 </li>
 <li>
 <p>A <a href="#configuring-c-development">working C development environment</a></p>
@@ -624,6 +716,31 @@ it is recommended you add these to your <code>application.properties</code> in o
 </tr>
 </table>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Building with Mandrel requires a custom builder image parameter to be passed additionally:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="shell" class="language-shell hljs">./mvnw package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.builder-image=quay.io/quarkus/ubi-quarkus-mandrel:{mandrel-flavor}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Please note that the above command points to a floating tag for ease of use,
+and to make sure you get the newest Mandrel version supported by Quarkus.
+Consider using specific tags when going into production.
+Check <a href="https://quay.io/repository/quarkus/ubi-quarkus-mandrel?tab=tags">here</a> to find out about available tags.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -834,6 +951,40 @@ CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]</code></pre>
 </tr>
 </table>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="debugging-native-executable"><a class="anchor" href="#debugging-native-executable"></a>Debugging native executable</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Starting with Oracle GraalVM 20.2 or Mandrel 20.1,
+debug symbols for native executables can be generated for Linux environments
+(Windows support is still under development).
+These symbols can be used to debug native executables with tools such as <code>gdb</code>.</p>
+</div>
+<div class="paragraph">
+<p>To generate debug symbols,
+add <code>-Dquarkus.native.debug.enabled=true</code> flag when generating the native executable.
+You will find the debug symbols for the native executable in a <code>.debug</code> file next to the native executable.</p>
+</div>
+<div class="paragraph">
+<p>Aside from debug symbols,
+setting <code>-Dquarkus.native.debug.enabled=true</code> flag generates a cache of source files
+for any JDK runtime classes, GraalVM classes and application classes resolved during native executable generation.
+This source cache is useful for native debugging tools,
+to establish the link between the symbols and matching source code.
+It provides a convenient way of making just the necessary sources available to the debugger/IDE when debugging a native executable.</p>
+</div>
+<div class="paragraph">
+<p>Sources for third party jar dependencies, including Quarkus source code,
+are not added to the source cache by default.
+To include those, make sure you invoke <code>mvn dependency:sources</code> first.
+This step is required in order to pull the sources for these dependencies,
+and get them included in the source cache.</p>
+</div>
+<div class="paragraph">
+<p>The location of source cache is <code>target/sources-cache</code> folder.</p>
 </div>
 </div>
 </div>

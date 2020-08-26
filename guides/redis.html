@@ -940,6 +940,65 @@ to validate the connection to the Redis server.</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>standalone</code>, <code>sentinel</code>, <code>cluster</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>standalone</code></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-redis-client_quarkus.redis.max-pool-size"></a><code><a href="#quarkus-redis-client_quarkus.redis.max-pool-size">quarkus.redis.max-pool-size</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The maximum size of the connection pool. When working with cluster or sentinel.
+ This value should be at least the total number of cluster member (or number of sentinels &#43; 1)</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>6</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-redis-client_quarkus.redis.max-pool-waiting"></a><code><a href="#quarkus-redis-client_quarkus.redis.max-pool-waiting">quarkus.redis.max-pool-waiting</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The maximum waiting requests for a connection from the pool.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>24</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-redis-client_quarkus.redis.pool-cleaner-interval"></a><code><a href="#quarkus-redis-client_quarkus.redis.pool-cleaner-interval">quarkus.redis.pool-cleaner-interval</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The duration indicating how often should the connection pool cleaner executes.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
+  <a href="#duration-note-anchor" title="More information about the Duration format"><span class="icon"><i class="fa fa-question-circle"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-redis-client_quarkus.redis.pool-recycle-timeout"></a><code><a href="#quarkus-redis-client_quarkus.redis.pool-recycle-timeout">quarkus.redis.pool-recycle-timeout</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The timeout for a connection recycling.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
+  <a href="#duration-note-anchor" title="More information about the Duration format"><span class="icon"><i class="fa fa-question-circle"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>15</code></p></td>
+</tr>
 </tbody>
 </table>
 <div id="duration-note-anchor" class="admonitionblock note">

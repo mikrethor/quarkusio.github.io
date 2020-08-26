@@ -979,7 +979,7 @@ via the <code>@io.quarkus.arc.profile.IfBuildProfile</code> and <code>@io.quarku
 When used in conjunction with <code>@io.quarkus.arc.DefaultBean</code>, these annotations allow for the creation of different bean configurations for different build profiles.</p>
 </div>
 <div class="paragraph">
-<p>Imagine for instance that an application contains a bean named <code>Tracer</code>, which needs to be do nothing when in tests or dev-mode, but work in its normal capacity for the production artifact.
+<p>Imagine for instance that an application contains a bean named <code>Tracer</code>, which needs to be do nothing when in tests or dev-mode, but works in its normal capacity for the production artifact.
 An elegant way to create such beans is the following:</p>
 </div>
 <div class="listingblock">
@@ -1002,7 +1002,7 @@ public class TracerConfiguration {
 </div>
 </div>
 <div class="paragraph">
-<p>If instead, it is required that the <code>Tracer</code> bean also work in dev-mode and only default to doing nothing for tests, then <code>@UnlessBuildProfile</code> would be ideal. The code would look like:</p>
+<p>If instead, it is required that the <code>Tracer</code> bean also works in dev-mode and only default to doing nothing for tests, then <code>@UnlessBuildProfile</code> would be ideal. The code would look like:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1010,13 +1010,13 @@ public class TracerConfiguration {
 public class TracerConfiguration {
 
     @Produces
-    @DefaultBean
+    @UnlessBuildProfile("test") // this will be enabled for both prod and dev build time profiles
     public Tracer realTracer(Reporter reporter, Configuration configuration) {
         return new RealTracer(reporter, configuration);
     }
 
     @Produces
-    @UnlessBuildProfile("prod") // this will be enabled for both test and dev build time profiles
+    @DefaultBean
     public Tracer noopTracer() {
         return new NoopTracer();
     }

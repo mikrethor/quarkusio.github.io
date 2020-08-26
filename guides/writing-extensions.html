@@ -3350,7 +3350,7 @@ public class ConfiguredBean implements IConfigConsumer {
                         .stream()
                         .anyMatch(dotName -&gt; dotName.equals(DotName.createSimple(IConfigConsumer.class.getName()))); <i class="conum" data-value="4"></i><b>(4)</b>
                 if (isConfigConsumer) {
-                    Class&lt;IConfigConsumer&gt; beanClass = (Class&lt;IConfigConsumer&gt;) Class.forName(beanClassInfo.name().toString());
+                    Class&lt;IConfigConsumer&gt; beanClass = (Class&lt;IConfigConsumer&gt;) Class.forName(beanClassInfo.name().toString(), false, Thread.currentThread().getContextClassLoader());
                     testBeanProducer.produce(new TestBeanBuildItem(beanClass)); <i class="conum" data-value="5"></i><b>(5)</b>
                     log.infof("Configured bean: %s", beanClass);
                 }

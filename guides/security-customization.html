@@ -86,6 +86,7 @@
 <li><a href="#disabling-authorization">Disabling Authorization</a></li>
 <li><a href="#registering-security-providers">Registering Security Providers</a></li>
 <li><a href="#reactive-security">Reactive Security</a></li>
+<li><a href="#references">References</a></li>
 </ul></div>
     <div>
       <div class="sect1">
@@ -160,23 +161,78 @@ public class RolesAugmentor implements SecurityIdentityAugmentor {
 
     @Override
     public Uni&lt;SecurityIdentity&gt; augment(SecurityIdentity identity, AuthenticationRequestContext context) {
-        return context.runBlocking(build(identity));
+        return Uni.createFrom().item(build(identity));
+
+        // Do 'return context.runBlocking(build(identity));'
+        // if a blocking call is required to customize the identity
     }
 
     private Supplier&lt;SecurityIdentity&gt; build(SecurityIdentity identity) {
         if(identity.isAnonymous()) {
             return () -&gt; identity;
         } else {
-            // create a new builder and copy principal, attributes, credentials and roles from the original
-            QuarkusSecurityIdentity.Builder builder = QuarkusSecurityIdentity.builder()
-                    .setPrincipal(identity.getPrincipal())
-                    .addAttributes(identity.getAttributes())
-                    .addCredentials(identity.getCredentials())
-                    .addRoles(identity.getRoles());
+            // create a new builder and copy principal, attributes, credentials and roles from the original identity
+            QuarkusSecurityIdentity.Builder builder = QuarkusSecurityIdentity.builder(identity);
 
             // add custom role source here
             builder.addRole("dummy");
             return builder::build;
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here is another example showing how to use the client certificate available in the current <a href="security-built-in-authentication#mutual-tls">Mutual TLS</a> request to add more roles:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">import java.security.cert.X509Certificate;
+import io.quarkus.security.credential.CertificateCredential;
+import io.quarkus.security.identity.AuthenticationRequestContext;
+import io.quarkus.security.identity.SecurityIdentity;
+import io.quarkus.security.identity.SecurityIdentityAugmentor;
+import io.quarkus.security.runtime.QuarkusSecurityIdentity;
+import io.smallrye.mutiny.Uni;
+
+import javax.enterprise.context.ApplicationScoped;
+import java.util.function.Supplier;
+import java.util.Set;
+
+@ApplicationScoped
+public class RolesAugmentor implements SecurityIdentityAugmentor {
+
+    @Override
+    public int priority() {
+        return 0;
+    }
+
+    @Override
+    public Uni&lt;SecurityIdentity&gt; augment(SecurityIdentity identity, AuthenticationRequestContext context) {
+        return Uni.createFrom().item(build(identity));
+    }
+
+    private Supplier&lt;SecurityIdentity&gt; build(SecurityIdentity identity) {
+        // create a new builder and copy principal, attributes, credentials and roles from the original identity
+        QuarkusSecurityIdentity.Builder builder = QuarkusSecurityIdentity.builder(identity);
+
+        CertificateCredential certificate = identity.getCredential(CertificateCredential.class);
+        if (certificate != null) {
+            builder.addRoles(extractRoles(certificate.getCertificate()));
+        }
+        return builder::build;
+    }
+
+    private Set&lt;String&gt; extractRoles(X509Certificate certificate) {
+        String name = certificate.getSubjectX500Principal().getName();
+
+        switch (name) {
+            case "CN=client":
+                return Collections.singleton("user");
+            case "CN=guest-client":
+                return Collections.singleton("guest");
+            default:
+                return Collections.emptySet();
         }
     }
 }</code></pre>
@@ -300,8 +356,20 @@ configuration to register the "SunRsaSign" and "SunJCE" security providers:</p>
 <div class="paragraph">
 <p>This will allow you to propagate the identity throughout the reactive callbacks. You also need to make sure you
 are using an executor that is capable of propagating the identity (e.g. no <code>CompletableFuture.supplyAsync</code>),
-to make sure that quarkus can propagate it. For more information see the
+to make sure that Quarkus can propagate it. For more information see the
 <a href="context-propagation">Context Propagation Guide</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="references"><a class="anchor" href="#references"></a>References</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="security">Quarkus Security</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>

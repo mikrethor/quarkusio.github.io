@@ -88,6 +88,7 @@
 <li><a href="#non-s2i-builds">Non S2i Builds</a></li>
 <li><a href="#deploying">Deploying</a></li>
 <li><a href="#customizing">Customizing</a></li>
+<li><a href="#knative-openshift-serverless">Knative - OpenShift Serverless</a></li>
 </ul>
 </li>
 </ul></div>
@@ -205,9 +206,7 @@ Furthermore, the items provided by <code>io.quarkus.deployment.ApplicationConfig
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">---
-quarkus.container-image.builder=docker
----</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">quarkus.container-image.builder=docker</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -215,9 +214,7 @@ quarkus.container-image.builder=docker
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">---
-quarkus.container-image.builder=jib
----</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">quarkus.container-image.builder=jib</code></pre>
 </div>
 </div>
 </div>
@@ -365,6 +362,35 @@ That is because for environment variables there are additional options rather th
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="knative-openshift-serverless"><a class="anchor" href="#knative-openshift-serverless"></a>Knative - OpenShift Serverless</h3>
+<div class="paragraph">
+<p>OpenShift also provides the ability to use Knative via the <a href="https://www.openshift.com/learn/topics/serverless">OpenShift Serverless</a> functionality.</p>
+</div>
+<div class="paragraph">
+<p>The first order of business is to instruct Quarkus to generate Knative resources by setting:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">quarkus.kubernetes.deployment-target=knative</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In order to leverage OpenShift S2I to build the container image on the cluster and use the resulting container image for the Knative application,
+we need to set a couple of configuration properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs"># set the Kubernetes namespace which will be used to run the application
+quarkus.container-image.group=geoand
+# set the container image registry - this is the standard URL used to refer to the internal OpenShift registry
+quarkus.container-image.registry=image-registry.openshift-image-registry.svc:5000</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The application can then be deployed to OpenShift Serverless by enabling the standard <code>quarkus.kubernetes.deploy=true</code> property.</p>
 </div>
 </div>
 </div>

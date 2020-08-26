@@ -110,7 +110,7 @@
 <p>This guide demonstrates how your Quarkus application can authorize a bearer token access to protected resources using <a href="https://www.keycloak.org/docs/latest/authorization_services/index.html">Keycloak Authorization Services</a>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>quarkus-keycloak-authorization</code> extension is based on <code>quarkus-oidc</code> and provides a policy enforcer that enforces access to protected resources based on permissions managed by Keycloak and currently can only be used with the Quarkus <a href="security-openid-connect">OIDC service appications</a>.
+<p>The <code>quarkus-keycloak-authorization</code> extension is based on <code>quarkus-oidc</code> and provides a policy enforcer that enforces access to protected resources based on permissions managed by Keycloak and currently can only be used with the Quarkus <a href="security-openid-connect">OIDC service applications</a>.
 It provides a flexible and dynamic authorization capability based on Resource-Based Access Control.
 In other words, instead of explicitly enforcing access based on some specific access control mechanism (e.g.: RBAC), you just check whether or not a request is allowed to access a resource based on its name, identifier or URI.</p>
 </div>
@@ -832,6 +832,9 @@ public class ProtectedResource {
 </li>
 <li>
 <p><a href="https://tools.ietf.org/html/rfc7519">JSON Web Token</a></p>
+</li>
+<li>
+<p><a href="security">Quarkus Security</a></p>
 </li>
 </ul>
 </div>

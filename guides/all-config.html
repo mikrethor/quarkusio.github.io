@@ -8885,13 +8885,13 @@ An unused bean:</p>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>The maximum amount of time the event loop can be blocked. Default is 2s.</p>
+<p>The maximum amount of time the event loop can be blocked.</p>
 </div>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
   <a href="#duration-note-anchor" title="More information about the Duration format"><span class="icon"><i class="fa fa-question-circle"></i></span></a></p></td>
-<td class="tableblock halign-left valign-middle"></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>2</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -8929,13 +8929,13 @@ An unused bean:</p>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>The maximum amount of time the worker thread can be blocked. Default is 10s.</p>
+<p>The maximum amount of time the worker thread can be blocked.</p>
 </div>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
   <a href="#duration-note-anchor" title="More information about the Duration format"><span class="icon"><i class="fa fa-question-circle"></i></span></a></p></td>
-<td class="tableblock halign-left valign-middle"></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>60</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -23588,12 +23588,12 @@ This configuration section is optional</p></th>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Both ID and access tokens are verified as part of the authorization code flow and every time these tokens are retrieved from the user session. One should disable the access token verification if it is only meant to be propagated to the downstream services. Note the ID token will always be verified.</p>
+<p>Both ID and access tokens are fetched from the OIDC provider as part of the authorization code flow. ID token is always verified on every user request as the primary token which is used to represent the principal and extract the roles. Access token is not verified by default since it is meant to be propagated to the downstream services. The verification of the access token should be enabled if it is injected as a JWT token. Access tokens obtained as part of the code flow will always be verified if <code>quarkus.oidc.roles.source</code> property is set to <code>accesstoken</code> which means the authorization decision will be based on the roles extracted from the access token. Bearer access tokens are always verified.</p>
 </div>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -24241,12 +24241,12 @@ This configuration section is optional</p></th>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Both ID and access tokens are verified as part of the authorization code flow and every time these tokens are retrieved from the user session. One should disable the access token verification if it is only meant to be propagated to the downstream services. Note the ID token will always be verified.</p>
+<p>Both ID and access tokens are fetched from the OIDC provider as part of the authorization code flow. ID token is always verified on every user request as the primary token which is used to represent the principal and extract the roles. Access token is not verified by default since it is meant to be propagated to the downstream services. The verification of the access token should be enabled if it is injected as a JWT token. Access tokens obtained as part of the code flow will always be verified if <code>quarkus.oidc.roles.source</code> property is set to <code>accesstoken</code> which means the authorization decision will be based on the roles extracted from the access token. Bearer access tokens are always verified.</p>
 </div>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -27714,6 +27714,50 @@ TCP</code> or <code>org.jboss.logmanager.handlers.SyslogHandler.Protocol#SSL_TCP
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-reactive-datasource_quarkus.datasource.reactive.reconnect-attempts"></a><code><a href="#quarkus-reactive-datasource_quarkus.datasource.reactive.reconnect-attempts">quarkus.datasource.reactive.reconnect-attempts</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The number of reconnection attempts when a pooled connection cannot be established on first try.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>0</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-reactive-datasource_quarkus.datasource.reactive.reconnect-interval"></a><code><a href="#quarkus-reactive-datasource_quarkus.datasource.reactive.reconnect-interval">quarkus.datasource.reactive.reconnect-interval</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The interval between reconnection attempts when a pooled connection cannot be established on first try.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
+  <a href="#duration-note-anchor" title="More information about the Duration format"><span class="icon"><i class="fa fa-question-circle"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>PT1S</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-reactive-datasource_quarkus.datasource.reactive.idle-timeout"></a><code><a href="#quarkus-reactive-datasource_quarkus.datasource.reactive.idle-timeout">quarkus.datasource.reactive.idle-timeout</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The maximum time without data written to or read from a connection before it is removed from the pool.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
+  <a href="#duration-note-anchor" title="More information about the Duration format"><span class="icon"><i class="fa fa-question-circle"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>no timeout</code></p></td>
+</tr>
+<tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-redis-client_quarkus-redis-client"></a><a href="#quarkus-redis-client_quarkus-redis-client">Redis Client</a></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
@@ -27816,6 +27860,65 @@ TCP</code> or <code>org.jboss.logmanager.handlers.SyslogHandler.Protocol#SSL_TCP
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>standalone</code>, <code>sentinel</code>, <code>cluster</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>standalone</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-redis-client_quarkus.redis.max-pool-size"></a><code><a href="#quarkus-redis-client_quarkus.redis.max-pool-size">quarkus.redis.max-pool-size</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The maximum size of the connection pool. When working with cluster or sentinel.
+ This value should be at least the total number of cluster member (or number of sentinels &#43; 1)</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>6</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-redis-client_quarkus.redis.max-pool-waiting"></a><code><a href="#quarkus-redis-client_quarkus.redis.max-pool-waiting">quarkus.redis.max-pool-waiting</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The maximum waiting requests for a connection from the pool.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>24</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-redis-client_quarkus.redis.pool-cleaner-interval"></a><code><a href="#quarkus-redis-client_quarkus.redis.pool-cleaner-interval">quarkus.redis.pool-cleaner-interval</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The duration indicating how often should the connection pool cleaner executes.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
+  <a href="#duration-note-anchor" title="More information about the Duration format"><span class="icon"><i class="fa fa-question-circle"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-redis-client_quarkus.redis.pool-recycle-timeout"></a><code><a href="#quarkus-redis-client_quarkus.redis.pool-recycle-timeout">quarkus.redis.pool-recycle-timeout</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The timeout for a connection recycling.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
+  <a href="#duration-note-anchor" title="More information about the Duration format"><span class="icon"><i class="fa fa-question-circle"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>15</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-scheduler_quarkus-scheduler"></a><a href="#quarkus-scheduler_quarkus-scheduler">Scheduler - tasks</a></p></th>

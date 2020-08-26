@@ -508,7 +508,7 @@ public class FruitResource {
 <div class="sectionbody">
 <div class="paragraph">
 <p>Both DynamoDB clients (sync and async) are configurable via the <code>application.properties</code> file that can be provided in the <code>src/main/resources</code> directory.
-Additionally, you need to added to the classpath a proper implementation of the sync client. By default the extension uses URL connection HTTP client, so
+Additionally, you need to add to the classpath a proper implementation of the sync client. By default the extension uses the <code>java.net.URLConnection</code> HTTP client, so
 you need to add a URL connection client dependency to the <code>pom.xml</code> file:</p>
 </div>
 <div class="listingblock">
@@ -520,7 +520,7 @@ you need to add a URL connection client dependency to the <code>pom.xml</code> f
 </div>
 </div>
 <div class="paragraph">
-<p>If you want to use Apache HTTP client instead, configure it as follows:</p>
+<p>If you want to use the Apache HTTP client instead, configure it as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
