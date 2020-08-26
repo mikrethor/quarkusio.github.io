@@ -5,7 +5,21 @@
         <title>Quarkus</title>
         <link>https://quarkus.io</link>
         <description>Quarkus: Supersonic Subatomic Java</description>
-        <lastBuildDate>Tue, 25 Aug 2020 15:03:23 +0000</lastBuildDate>
+        <lastBuildDate>Wed, 26 Aug 2020 14:29:19 +0000</lastBuildDate>
+        
+        <item>
+            <title>From zero to hero on backporting pull requests</title>
+            <link>
+                https://quarkus.io/blog/backports-application/
+            </link>
+            <description>
+                The Quarkus project moves fast and when we prepare bugfix releases, we usually have several dozens of pull requests to backport. The number of pull requests to backport is enormous and doing it via the GitHub UI is inconvenient and takes a lot of time (click PR, copy/paste commit hashes...
+            </description>
+            <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/backports-application/
+            </guid>
+        </item>
         
         <item>
             <title>How to handle failures with Mutiny</title>
@@ -130,20 +144,6 @@
             <pubDate>Wed, 08 Jul 2020 00:00:00 +0000</pubDate>
             <guid>
                 https://quarkus.io/blog/quarkus-1-6-0-final-released/
-            </guid>
-        </item>
-        
-        <item>
-            <title>Quarkus Newsletter #7</title>
-            <link>
-                https://quarkus.io/blog/quarkus-newsletter-7/
-            </link>
-            <description>
-                Welcome to Quarkus Newletter #7, this time with a record number of links to Quarkus related articles/videos/etc. all found online for you to explore. For the news below - give it a read and if you feel something is missing or have an article coming out for future Quarkus Newsletter...
-            </description>
-            <pubDate>Thu, 25 Jun 2020 00:00:00 +0000</pubDate>
-            <guid>
-                https://quarkus.io/blog/quarkus-newsletter-7/
             </guid>
         </item>
         
