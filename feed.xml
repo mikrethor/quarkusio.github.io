@@ -5,7 +5,21 @@
         <title>Quarkus</title>
         <link>https://quarkus.io</link>
         <description>Quarkus: Supersonic Subatomic Java</description>
-        <lastBuildDate>Wed, 26 Aug 2020 15:09:22 +0000</lastBuildDate>
+        <lastBuildDate>Thu, 27 Aug 2020 07:46:23 +0000</lastBuildDate>
+        
+        <item>
+            <title>Quarkus 1.7.1.Final released - Bugfixes</title>
+            <link>
+                https://quarkus.io/blog/quarkus-1-7-1-final-released/
+            </link>
+            <description>
+                Today, we released Quarkus 1.7.1.Final with some bugfixes and documentation improvements. It is a safe upgrade for everyone using 1.7.0.Final. What&#8217;s new? This release is a maintenance release that fixes various bugs found in 1.7.0.Final and provides some documentation updates. Thanks to our contributors, we also made numerous improvements to...
+            </description>
+            <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/quarkus-1-7-1-final-released/
+            </guid>
+        </item>
         
         <item>
             <title>Free Quarkus Sessions at Quarkus Day by Red Hat</title>
@@ -130,20 +144,6 @@
             <pubDate>Fri, 10 Jul 2020 20:00:00 +0000</pubDate>
             <guid>
                 https://quarkus.io/blog/quarkus-test-profiles/
-            </guid>
-        </item>
-        
-        <item>
-            <title>A Shot of Quarkus with a Cassandra Chaser: Time for Faster Microservices</title>
-            <link>
-                https://quarkus.io/blog/quarkus-cassandra-extension-released/
-            </link>
-            <description>
-                With the new Quarkus extension for Apache Cassandra® released in Quarkus 1.6, all it takes is a few lines of code to connect to and access your data stored in Cassandra and you get all of the benefits of Quarkus (fast-startup, low resource utilization, reactive programming). To enable the extension,...
-            </description>
-            <pubDate>Thu, 09 Jul 2020 00:00:00 +0000</pubDate>
-            <guid>
-                https://quarkus.io/blog/quarkus-cassandra-extension-released/
             </guid>
         </item>
         
