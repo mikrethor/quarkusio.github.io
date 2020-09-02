@@ -5,7 +5,21 @@
         <title>Quarkus</title>
         <link>https://quarkus.io</link>
         <description>Quarkus: Supersonic Subatomic Java</description>
-        <lastBuildDate>Sun, 30 Aug 2020 12:48:56 +0000</lastBuildDate>
+        <lastBuildDate>Wed, 02 Sep 2020 08:52:34 +0000</lastBuildDate>
+        
+        <item>
+            <title>Using Redis with Mutiny - Composing asynchronous actions</title>
+            <link>
+                https://quarkus.io/blog/mutiny-redis/
+            </link>
+            <description>
+                I got an interesting question from a user about Redis and Mutiny. While the problem was not specifically about Redis and could be applied to many other APIs, I found the context amusing. Enrico, the user, wanted to do something like this: 1. get all keys from Redis 2. for...
+            </description>
+            <pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/mutiny-redis/
+            </guid>
+        </item>
         
         <item>
             <title>Quarkus Hackathon Winners</title>
@@ -130,20 +144,6 @@
             <pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
             <guid>
                 https://quarkus.io/blog/quarkus-1-7-0-final-released/
-            </guid>
-        </item>
-        
-        <item>
-            <title>Quarkus 1.6.1.Final released - Bugfixes</title>
-            <link>
-                https://quarkus.io/blog/quarkus-1-6-1-final-released/
-            </link>
-            <description>
-                Today, we released Quarkus 1.6.1.Final with some bugfixes and documentation improvements. It is a safe upgrade for everyone using 1.6.0.Final. What&#8217;s new? Apart from bugfixes and usability improvements, Quarkus 1.6.1.Final introduces one behavior change: when building a native executable with GraalVM, the file.encoding is now set to UTF-8. It won&#8217;t...
-            </description>
-            <pubDate>Tue, 21 Jul 2020 00:00:00 +0000</pubDate>
-            <guid>
-                https://quarkus.io/blog/quarkus-1-6-1-final-released/
             </guid>
         </item>
         
