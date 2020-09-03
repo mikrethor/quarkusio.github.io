@@ -83,6 +83,7 @@
 <li><a href="#installing">Installing</a>
 <ul class="sectlevel2">
 <li><a href="#reactive-postgresql-client-extension">Reactive PostgreSQL Client extension</a></li>
+<li><a href="#mutiny">Mutiny</a></li>
 <li><a href="#json-binding">JSON Binding</a></li>
 </ul>
 </li>
@@ -243,6 +244,17 @@ cd reactive-pg-client-quickstart</code></pre>
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="mutiny"><a class="anchor" href="#mutiny"></a>Mutiny</h3>
+<div class="paragraph">
+<p>Reactive REST endpoints in your application that return Uni or Multi need <code>Mutiny support for RESTEasy</code> extension (<code>io.quarkus:quarkus-resteasy-mutiny</code>) to work properly:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="shell" class="language-shell hljs">./mvnw quarkus:add-extension -Dextensions="resteasy-mutiny"</code></pre>
+</div>
+</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -250,7 +262,6 @@ cd reactive-pg-client-quickstart</code></pre>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-<div class="title">Mutiny</div>
 <div class="paragraph">
 <p>In this guide, we will use the Mutiny API of the Reactive PostgreSQL Client.
 If you&#8217;re not familiar with Mutiny reactive types, read the <a href="getting-started-reactive#mutiny">Getting Started with Reactive guide</a> first.</p>
@@ -983,18 +994,6 @@ This step depends on the database type.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-datasource_quarkus.datasource.max-size"></a><code><a href="#quarkus-datasource_quarkus.datasource.max-size">quarkus.datasource.max-size</a></code></p>
-</div>
-<div class="openblock description">
-<div class="content">
-
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>20</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a id="quarkus-datasource_quarkus.datasource.username"></a><code><a href="#quarkus-datasource_quarkus.datasource.username">quarkus.datasource.username</a></code></p>
 </div>
 <div class="openblock description">
@@ -1052,6 +1051,18 @@ This step depends on the database type.</p>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-datasource_quarkus.datasource.max-size"></a><code><a href="#quarkus-datasource_quarkus.datasource.max-size">quarkus.datasource.max-size</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>20</code></p></td>
+</tr>
+<tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-datasource_quarkus.datasource.named-data-sources"></a><a href="#quarkus-datasource_quarkus.datasource.named-data-sources">Additional named datasources</a></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
@@ -1069,18 +1080,6 @@ This step depends on the database type.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-datasource_quarkus.datasource.-datasource-name-.max-size"></a><code><a href="#quarkus-datasource_quarkus.datasource.-datasource-name-.max-size">quarkus.datasource."datasource-name".max-size</a></code></p>
-</div>
-<div class="openblock description">
-<div class="content">
-
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>20</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -1139,6 +1138,18 @@ This step depends on the database type.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-datasource_quarkus.datasource.-datasource-name-.max-size"></a><code><a href="#quarkus-datasource_quarkus.datasource.-datasource-name-.max-size">quarkus.datasource."datasource-name".max-size</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>20</code></p></td>
 </tr>
 </tbody>
 </table>

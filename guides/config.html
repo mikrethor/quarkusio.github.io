@@ -942,8 +942,8 @@ If your configuration property is overridable at runtime, the property expressio
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">%dev.quarkus.datasource.url=jdbc:mysql://localhost:3306/mydatabase?useSSL=false
-quarkus.datasource.url=jdbc:mysql://remotehost:3306/mydatabase?useSSL=false</code></pre>
+<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">%dev.quarkus.datasource.jdbc.url=jdbc:mysql://localhost:3306/mydatabase?useSSL=false
+quarkus.datasource.jdbc.url=jdbc:mysql://remotehost:3306/mydatabase?useSSL=false</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -954,7 +954,7 @@ quarkus.datasource.url=jdbc:mysql://remotehost:3306/mydatabase?useSSL=false</cod
 <pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">%dev.application.server=localhost
 application.server=remotehost
 
-quarkus.datasource.url=jdbc:mysql://${application.server}:3306/mydatabase?useSSL=false</code></pre>
+quarkus.datasource.jdbc.url=jdbc:mysql://${application.server}:3306/mydatabase?useSSL=false</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1234,8 +1234,9 @@ You should decide and keep one configuration type to avoid errors.
 <pre class="highlightjs highlight"><code data-lang="yaml" class="language-yaml hljs"># YAML supports comments
 quarkus:
   datasource:
-    url: jdbc:postgresql://localhost:5432/some-database
-    driver: org.postgresql.Driver
+    db-kind: postgresql
+    jdbc:
+      url: jdbc:postgresql://localhost:5432/some-database
     username: quarkus
     password: quarkus
 
@@ -1280,8 +1281,9 @@ Just add the <code>%profile</code> wrapped in quotation marks before defining th
 <pre class="highlightjs highlight"><code data-lang="yaml" class="language-yaml hljs">"%dev":
   quarkus:
     datasource:
-      url: jdbc:postgresql://localhost:5432/some-database
-      driver: org.postgresql.Driver
+      db-kind: postgresql
+      jdbc:
+        url: jdbc:postgresql://localhost:5432/some-database
       username: quarkus
       password: quarkus</code></pre>
 </div>

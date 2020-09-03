@@ -741,14 +741,12 @@ quarkus.quartz.plugin.jobHistory.jobSuccessMessage=Job [{1}.{0}] execution compl
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">---
-public class MyListenerManager {
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public class MyListenerManager {
     void onStart(@Observes StartupEvent event, org.quartz.Scheduler scheduler) throws SchedulerException {
         scheduler.getListenerManager().addJobListener(new MyJogListener());
         scheduler.getListenerManager().addTriggerListener(new MyTriggerListener());
     }
-}
----</code></pre>
+}</code></pre>
 </div>
 </div>
 </div>

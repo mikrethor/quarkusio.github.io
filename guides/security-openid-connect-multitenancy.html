@@ -928,7 +928,7 @@ public class CustomTenantConfigResolver implements TenantConfigResolver {
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Refresh expired ID tokens. If this property is enabled then a refresh token request is performed and, if successful, the local session is updated with the new set of tokens. Otherwise, the local session is invalidated as an indication that the session at the OpenID Provider no longer exists. This option is only valid when the application is of type <code>ApplicationType#WEB_APP</code>}.</p>
+<p>Refresh expired ID tokens. If this property is enabled then a refresh token request will be performed if the ID token has expired and, if successful, the local session will be updated with the new set of tokens. Otherwise, the local session will be invalidated and the user redirected to the OpenID Provider to re-authenticate. In this case the user may not be challenged again if the OIDC provider session is still active. For this option be effective the <code>authentication.session-age-extension</code> property should also be set to a non-zero value since the refresh token is currently kept in the user session. This option is valid only when the application is of type <code>ApplicationType#WEB_APP</code>}.</p>
 </div>
 </div>
 </div></div></td>
@@ -1188,6 +1188,21 @@ public class CustomTenantConfigResolver implements TenantConfigResolver {
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-oidc_quarkus.oidc.authentication.session-age-extension"></a><code><a href="#quarkus-oidc_quarkus.oidc.authentication.session-age-extension">quarkus.oidc.authentication.session-age-extension</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Session age extension in minutes. The user session age property is set to the value of the ID token life-span by default and the user will be redirected to the OIDC provider to re-authenticate once the session has expired. If this property is set to a non-zero value then the expired ID token can be refreshed before the session has expired. This property will be ignored if the <code>token.refresh-expired</code> property has not been enabled.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
+  <a href="#duration-note-anchor" title="More information about the Duration format"><span class="icon"><i class="fa fa-question-circle"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>5M</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -1581,7 +1596,7 @@ public class CustomTenantConfigResolver implements TenantConfigResolver {
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Refresh expired ID tokens. If this property is enabled then a refresh token request is performed and, if successful, the local session is updated with the new set of tokens. Otherwise, the local session is invalidated as an indication that the session at the OpenID Provider no longer exists. This option is only valid when the application is of type <code>ApplicationType#WEB_APP</code>}.</p>
+<p>Refresh expired ID tokens. If this property is enabled then a refresh token request will be performed if the ID token has expired and, if successful, the local session will be updated with the new set of tokens. Otherwise, the local session will be invalidated and the user redirected to the OpenID Provider to re-authenticate. In this case the user may not be challenged again if the OIDC provider session is still active. For this option be effective the <code>authentication.session-age-extension</code> property should also be set to a non-zero value since the refresh token is currently kept in the user session. This option is valid only when the application is of type <code>ApplicationType#WEB_APP</code>}.</p>
 </div>
 </div>
 </div></div></td>
@@ -1855,6 +1870,21 @@ public class CustomTenantConfigResolver implements TenantConfigResolver {
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-oidc_quarkus.oidc.-tenant-.authentication.session-age-extension"></a><code><a href="#quarkus-oidc_quarkus.oidc.-tenant-.authentication.session-age-extension">quarkus.oidc."tenant".authentication.session-age-extension</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Session age extension in minutes. The user session age property is set to the value of the ID token life-span by default and the user will be redirected to the OIDC provider to re-authenticate once the session has expired. If this property is set to a non-zero value then the expired ID token can be refreshed before the session has expired. This property will be ignored if the <code>token.refresh-expired</code> property has not been enabled.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
+  <a href="#duration-note-anchor" title="More information about the Duration format"><span class="icon"><i class="fa fa-question-circle"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>5M</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">

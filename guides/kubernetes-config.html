@@ -155,6 +155,12 @@ To access ConfigMaps and Secrets from a specific namespace, you can set the <cod
 <div class="paragraph">
 <p>The properties obtained from the ConfigMaps and Secrets have a higher priority than (i.e. they override) any properties of the same name that are found in <code>application.properties</code> (or the YAML equivalents), but they have lower priority than properties set via Environment Variables or Java System Properties.</p>
 </div>
+<div class="paragraph">
+<p>Furthermore, when multiple ConfigMaps (or Secrets) are used, ConfigMaps (or Secrets) defined later in the list have a higher priority that ConfigMaps defined earlier in the list.</p>
+</div>
+<div class="paragraph">
+<p>Finally, when both ConfigMaps and Secrets are used, the latter always a higher priority than the former.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="kubernetes-permissions"><a class="anchor" href="#kubernetes-permissions"></a>Kubernetes Permissions</h3>
@@ -228,7 +234,7 @@ Set <code>quarkus.kubernetes-config.secrets.enabled=true</code> to generate the 
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>ConfigMaps to look for in the namespace that the Kubernetes Client has been configured for</p>
+<p>ConfigMaps to look for in the namespace that the Kubernetes Client has been configured for. ConfigMaps defined later in this list have a higher priority that ConfigMaps defined earlier in this list. Furthermore any Secrets defined in <code>secrets</code>, will have higher priorities than all ConfigMaps.</p>
 </div>
 </div>
 </div></div></td>
@@ -242,7 +248,7 @@ Set <code>quarkus.kubernetes-config.secrets.enabled=true</code> to generate the 
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Secrets to look for in the namespace that the Kubernetes Client has been configured for. If you use this, you probably want to enable <code>quarkus.kubernetes-config.secrets.enabled</code>.</p>
+<p>Secrets to look for in the namespace that the Kubernetes Client has been configured for. If you use this, you probably want to enable <code>quarkus.kubernetes-config.secrets.enabled</code>. Secrets defined later in this list have a higher priority that ConfigMaps defined earlier in this list. Furthermore these Secrets have a higher priorities than all ConfigMaps defined in <code>configMaps</code>.</p>
 </div>
 </div>
 </div></div></td>

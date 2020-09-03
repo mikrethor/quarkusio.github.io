@@ -487,6 +487,9 @@ define that this function will be triggered by all new file inside this bucket.<
 </div>
 </div>
 <div class="paragraph">
+<p>Before using the invoker, you first need to build your function via <code>mvn package</code>.</p>
+</div>
+<div class="paragraph">
 <p>Then you can use it to launch your function locally, again, the command depends on the type of function and the type of events.</p>
 </div>
 <div class="sect2">
@@ -497,9 +500,21 @@ define that this function will be triggered by all new file inside this bucket.<
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">java -jar java-function-invoker-1.0.0-beta1.jar \
-  --classpath target/funqy-google-cloud-functions-1.0-SNAPSHOT-runner.jar \
+  --classpath target/funqy-google-cloud-functions-1.0.0-SNAPSHOT-runner.jar \
   --target io.quarkus.funqy.gcp.functions.FunqyBackgroundFunction</code></pre>
 </div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The <code>--classpath</code> parameter needs to be set to the previously packaged JAR that contains your function class and all Quarkus related classes.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Then you can call your background function via an HTTP call with a payload containing the event:</p>
@@ -521,9 +536,21 @@ define that this function will be triggered by all new file inside this bucket.<
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">java -jar java-function-invoker-1.0.0-beta1.jar \
-  --classpath target/funqy-google-cloud-functions-1.0-SNAPSHOT-runner.jar \
+  --classpath target/funqy-google-cloud-functions-1.0.0-SNAPSHOT-runner.jar \
   --target io.quarkus.funqy.gcp.functions.FunqyBackgroundFunction</code></pre>
 </div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The <code>--classpath</code> parameter needs to be set to the previously packaged JAR that contains your function class and all Quarkus related classes.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Then you can call your background function via an HTTP call with a payload containing the event:</p>

@@ -787,7 +787,7 @@ Have a look at <a href="https://kubernetes.io/docs/tasks/configure-pod-container
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>ConfigMaps to look for in the namespace that the Kubernetes Client has been configured for</p>
+<p>ConfigMaps to look for in the namespace that the Kubernetes Client has been configured for. ConfigMaps defined later in this list have a higher priority that ConfigMaps defined earlier in this list. Furthermore any Secrets defined in <code>secrets</code>, will have higher priorities than all ConfigMaps.</p>
 </div>
 </div>
 </div></div></td>
@@ -801,7 +801,7 @@ Have a look at <a href="https://kubernetes.io/docs/tasks/configure-pod-container
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Secrets to look for in the namespace that the Kubernetes Client has been configured for. If you use this, you probably want to enable <code>quarkus.kubernetes-config.secrets.enabled</code>.</p>
+<p>Secrets to look for in the namespace that the Kubernetes Client has been configured for. If you use this, you probably want to enable <code>quarkus.kubernetes-config.secrets.enabled</code>. Secrets defined later in this list have a higher priority that ConfigMaps defined earlier in this list. Furthermore these Secrets have a higher priorities than all ConfigMaps defined in <code>configMaps</code>.</p>
 </div>
 </div>
 </div></div></td>
