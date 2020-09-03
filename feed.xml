@@ -5,7 +5,21 @@
         <title>Quarkus</title>
         <link>https://quarkus.io</link>
         <description>Quarkus: Supersonic Subatomic Java</description>
-        <lastBuildDate>Thu, 03 Sep 2020 15:11:32 +0000</lastBuildDate>
+        <lastBuildDate>Thu, 03 Sep 2020 16:12:09 +0000</lastBuildDate>
+        
+        <item>
+            <title>Quarkus 1.7.2.Final released - Bugfixes</title>
+            <link>
+                https://quarkus.io/blog/quarkus-1-7-2-final-released/
+            </link>
+            <description>
+                Today, we released Quarkus 1.7.2.Final with some bugfixes and documentation improvements. It is a safe upgrade for everyone using 1.7.0.Final or 1.7.1.Final. What&#8217;s new? This release is a maintenance release that fixes various bugs found in 1.7.1.Final and provides some documentation updates. You can get the full changelog of 1.7.2.Final...
+            </description>
+            <pubDate>Thu, 03 Sep 2020 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/quarkus-1-7-2-final-released/
+            </guid>
+        </item>
         
         <item>
             <title>Using Redis with Mutiny - Composing asynchronous actions</title>
@@ -130,20 +144,6 @@
             <pubDate>Tue, 18 Aug 2020 00:00:00 +0000</pubDate>
             <guid>
                 https://quarkus.io/blog/quarkus-hackathon-finalist-announcement/
-            </guid>
-        </item>
-        
-        <item>
-            <title>Quarkus 1.7 released - Elasticsearch and Redis clients, Reactive routes and Funqy improvements</title>
-            <link>
-                https://quarkus.io/blog/quarkus-1-7-0-final-released/
-            </link>
-            <description>
-                As usual, this new Quarkus version comes with some exciting new features but we put the focus this month on fixing issues and improving things all over the place, documentation included. Quarkus 1.7, that&#8217;s more than 300 pull requests merged. The most prominent new features are: New extensions for the...
-            </description>
-            <pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
-            <guid>
-                https://quarkus.io/blog/quarkus-1-7-0-final-released/
             </guid>
         </item>
         
