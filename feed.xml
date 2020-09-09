@@ -5,7 +5,21 @@
         <title>Quarkus</title>
         <link>https://quarkus.io</link>
         <description>Quarkus: Supersonic Subatomic Java</description>
-        <lastBuildDate>Wed, 09 Sep 2020 11:51:15 +0000</lastBuildDate>
+        <lastBuildDate>Wed, 09 Sep 2020 12:48:32 +0000</lastBuildDate>
+        
+        <item>
+            <title>Quarkus 1.7.3.Final released - Bugfixes</title>
+            <link>
+                https://quarkus.io/blog/quarkus-1-7-3-final-released/
+            </link>
+            <description>
+                Today, we released Quarkus 1.7.3.Final with some bugfixes and documentation improvements. It is a safe upgrade for everyone using 1.7.0.Final, 1.7.1.Final or 1.7.2.Final. What&#8217;s new? This release is a maintenance release that fixes various bugs found in 1.7.2.Final and provides some documentation updates. Thanks to our contributors, we also made...
+            </description>
+            <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/quarkus-1-7-3-final-released/
+            </guid>
+        </item>
         
         <item>
             <title>Combining Apache Kafka and the Rest client</title>
@@ -130,20 +144,6 @@
             <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
             <guid>
                 https://quarkus.io/blog/codestarts-preview/
-            </guid>
-        </item>
-        
-        <item>
-            <title>MicroProfile OpenAPI for everyone</title>
-            <link>
-                https://quarkus.io/blog/openapi-for-everyone/
-            </link>
-            <description>
-                MicroProfile OpenAPI is primarily used for adding OpenAPI to JAX-RS Endpoints. In this blog post we will look at how the SmallRye Implementation extends this with some extra features, and support for more web frameworks, when used in Quarkus. Using Quarkus The example code is available here. You can also...
-            </description>
-            <pubDate>Wed, 19 Aug 2020 00:00:00 +0000</pubDate>
-            <guid>
-                https://quarkus.io/blog/openapi-for-everyone/
             </guid>
         </item>
         
