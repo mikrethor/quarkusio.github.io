@@ -321,7 +321,7 @@ This service allows tools like <a href="https://github.com/fullstorydev/grpcurl"
 </div>
 <div class="paragraph">
 <p>The reflection service is enabled by default in <em>dev</em> mode.
-In test or production mode, you need to enable it explicitly by setting <code>quarkus.grpc-server.enable-reflection-service</code> to <code>true</code>.</p>
+In test or production mode, you need to enable it explicitly by setting <code>quarkus.grpc.server.enable-reflection-service</code> to <code>true</code>.</p>
 </div>
 </div>
 </div>
@@ -684,8 +684,8 @@ Otherwise, <code>PT</code> is implicitly prepended to the value to obtain a stan
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">quarkus.grpc-server.ssl.certificate=src/main/resources/tls/server.pem
-quarkus.grpc-server.ssl.key=src/main/resources/tls/server.key</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">quarkus.grpc.server.ssl.certificate=src/main/resources/tls/server.pem
+quarkus.grpc.server.ssl.key=src/main/resources/tls/server.key</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -708,11 +708,11 @@ When SSL/TLS is configured, <code>plain-text</code> is automatically disabled.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">quarkus.grpc-server.ssl.certificate=src/main/resources/tls/server.pem
-quarkus.grpc-server.ssl.key=src/main/resources/tls/server.key
-quarkus.grpc-server.ssl.trust-store=src/main/resources/tls/ca.jks
-quarkus.grpc-server.ssl.trust-store-password=*****
-quarkus.grpc-server.ssl.client-auth=REQUIRED</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">quarkus.grpc.server.ssl.certificate=src/main/resources/tls/server.pem
+quarkus.grpc.server.ssl.key=src/main/resources/tls/server.key
+quarkus.grpc.server.ssl.trust-store=src/main/resources/tls/ca.jks
+quarkus.grpc.server.ssl.trust-store-password=*****
+quarkus.grpc.server.ssl.client-auth=REQUIRED</code></pre>
 </div>
 </div>
 </div>
