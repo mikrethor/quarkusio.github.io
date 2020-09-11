@@ -138,12 +138,12 @@ Quarkus offers multiple ways to invoke a remote HTTP service, but let&#8217;s us
 public interface TransactionService {
 
     @Path("/transactions")
-    @POST TransactionResult
-    postSync(Transaction transaction);
+    @POST
+    TransactionResult postSync(Transaction transaction);
 
     @Path("/transactions")
-    @POST Uni&lt;TransactionResult&gt;
-    postAsync(Transaction transaction);
+    @POST
+    Uni&lt;TransactionResult&gt; postAsync(Transaction transaction);
 
 }</code></pre>
 </div>
