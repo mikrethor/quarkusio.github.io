@@ -5,7 +5,21 @@
         <title>Quarkus</title>
         <link>https://quarkus.io</link>
         <description>Quarkus: Supersonic Subatomic Java</description>
-        <lastBuildDate>Fri, 11 Sep 2020 17:03:11 +0000</lastBuildDate>
+        <lastBuildDate>Mon, 14 Sep 2020 11:08:39 +0000</lastBuildDate>
+        
+        <item>
+            <title>Wipro Addresses Seismic Shift in Retail with Quarkus</title>
+            <link>
+                https://quarkus.io/blog/wipro-customer-story/
+            </link>
+            <description>
+                Retailers are aggressively adopting cloud technologies to keep up with changing customer needs, seasonal demands, and increased competition. Digital retailers, like Amazon, are disrupting the industry and retailers are looking for ways to remain competitive through technology. Retailers are making significant investments in the acquisition and adoption of cloud software...
+            </description>
+            <pubDate>Mon, 14 Sep 2020 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/wipro-customer-story/
+            </guid>
+        </item>
         
         <item>
             <title>Quarkus 1.7.3.Final released - Bugfixes</title>
@@ -130,20 +144,6 @@
             <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
             <guid>
                 https://quarkus.io/blog/mutiny-failure-handling/
-            </guid>
-        </item>
-        
-        <item>
-            <title>Preview the new way to start coding with Quarkus</title>
-            <link>
-                https://quarkus.io/blog/codestarts-preview/
-            </link>
-            <description>
-                Have you ever generated a Quarkus project using the Maven plugin or code.quarkus.io? If you did, then you might have wondered why, with the breadth of Quarkus extensions, we would only let you generate a REST API example application. Of course, you can pick extensions which are going to be...
-            </description>
-            <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
-            <guid>
-                https://quarkus.io/blog/codestarts-preview/
             </guid>
         </item>
         
