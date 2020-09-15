@@ -440,6 +440,18 @@ There can be other custom scopes provided by Quarkus extensions. For example, <c
 A client proxy is basically an object that delegates all method invocations to a target bean instance.
 It&#8217;s a container construct that implements <code>io.quarkus.arc.ClientProxy</code> and extends the bean class.</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Client proxies only delegate method invocations. So never read or write a field of a normal scoped bean, otherwise you will work with non-contextual or stale data.
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
 <div class="title">Generated Client Proxy Example</div>
 <div class="content">

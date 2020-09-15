@@ -908,6 +908,21 @@ This will make an <code>io.quarkus.oidc.UserInfo</code> (which is a simple <code
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-oidc_quarkus.oidc.token.auto-refresh-interval"></a><code><a href="#quarkus-oidc_quarkus.oidc.token.auto-refresh-interval">quarkus.oidc.token.auto-refresh-interval</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Token auto-refresh interval in seconds during the user re-authentication. If this option is set then the valid ID token will be refreshed if it will expire in less than a number of minutes set by this option. The user will still be authenticated if the ID token can no longer be refreshed but is still valid. This option will be ignored if the 'refresh-expired' property is not enabled.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
+  <a href="#duration-note-anchor" title="More information about the Duration format"><span class="icon"><i class="fa fa-question-circle"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a id="quarkus-oidc_quarkus.oidc.token.forced-jwk-refresh-interval"></a><code><a href="#quarkus-oidc_quarkus.oidc.token.forced-jwk-refresh-interval">quarkus.oidc.token.forced-jwk-refresh-interval</a></code></p>
 </div>
 <div class="openblock description">
@@ -1243,10 +1258,10 @@ This will make an <code>io.quarkus.oidc.UserInfo</code> (which is a simple <code
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Map&lt;String,String&gt;</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">required <span class="icon"><i class="fa fa-exclamation-circle" title="Configuration property is required"></i></span></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-oidc_quarkus.oidc.named-tenants"></a><a href="#quarkus-oidc_quarkus.oidc.named-tenants">Additional named tenants</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-oidc_quarkus.oidc.named-tenants-additional-named-tenants"></a><a href="#quarkus-oidc_quarkus.oidc.named-tenants-additional-named-tenants">Additional named tenants</a></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
@@ -1576,6 +1591,21 @@ This will make an <code>io.quarkus.oidc.UserInfo</code> (which is a simple <code
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-oidc_quarkus.oidc.-tenant-.token.auto-refresh-interval"></a><code><a href="#quarkus-oidc_quarkus.oidc.-tenant-.token.auto-refresh-interval">quarkus.oidc."tenant".token.auto-refresh-interval</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Token auto-refresh interval in seconds during the user re-authentication. If this option is set then the valid ID token will be refreshed if it will expire in less than a number of minutes set by this option. The user will still be authenticated if the ID token can no longer be refreshed but is still valid. This option will be ignored if the 'refresh-expired' property is not enabled.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html">Duration</a>
+  <a href="#duration-note-anchor" title="More information about the Duration format"><span class="icon"><i class="fa fa-question-circle"></i></span></a></p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a id="quarkus-oidc_quarkus.oidc.-tenant-.token.forced-jwk-refresh-interval"></a><code><a href="#quarkus-oidc_quarkus.oidc.-tenant-.token.forced-jwk-refresh-interval">quarkus.oidc."tenant".token.forced-jwk-refresh-interval</a></code></p>
 </div>
 <div class="openblock description">
@@ -1812,7 +1842,7 @@ This will make an <code>io.quarkus.oidc.UserInfo</code> (which is a simple <code
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Map&lt;String,String&gt;</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">required <span class="icon"><i class="fa fa-exclamation-circle" title="Configuration property is required"></i></span></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">

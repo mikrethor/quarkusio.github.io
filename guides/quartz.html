@@ -309,7 +309,7 @@ public class Task extends PanacheEntity { <i class="conum" data-value="1"></i><b
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Declare the entity using <a href="https://quarkus.io/guides/hibernate-orm-panache">Panache</a></p>
+<p>Declare the entity using <a href="hibernate-orm-panache">Panache</a></p>
 </li>
 </ol>
 </div>
@@ -375,7 +375,7 @@ public class TaskBean {
     @Inject
     org.quartz.Scheduler quartz; <i class="conum" data-value="1"></i><b>(1)</b>
 
-    void onStart(@Observes StartupEvent event) {
+    void onStart(@Observes StartupEvent event) throws SchedulerException {
        JobDetail job = JobBuilder.newJob(MyJob.class)
                          .withIdentity("myJob", "myGroup")
                          .build();
@@ -399,8 +399,11 @@ public class TaskBean {
     // A new instance of MyJob is created by Quartz for every job execution
     public static class MyJob implements Job {
 
+       @Inject
+       TaskBean taskBean;
+
        public void execute(JobExecutionContext context) throws JobExecutionException {
-          Arc.container().instance(TaskBean.class).get(). performTask(); <i class="conum" data-value="3"></i><b>(3)</b>
+          taskBean.performTask(); <i class="conum" data-value="3"></i><b>(3)</b>
        }
 
     }
@@ -416,7 +419,7 @@ public class TaskBean {
 <p>Schedule a new job using the Quartz API.</p>
 </li>
 <li>
-<p>Lookup the bean instance of <code>TaskBean</code> and invoke the <code>performTask()</code> method from the job.</p>
+<p>Invoke the <code>TaskBean#performTask()</code> method from the job. Jobs are also <a href="cdi">container-managed</a> beans if they belong to a <a href="cdi-reference">bean archive</a>.</p>
 </li>
 </ol>
 </div>
@@ -725,19 +728,19 @@ You can also generate the native executable with <code>./mvnw clean package -Pna
 <h2 id="quartz-register-plugin-listeners"><a class="anchor" href="#quartz-register-plugin-listeners"></a>Registering Plugin and Listeners</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can register a plugin, jobListener or triggerListener through Quarkus configuration.</p>
+<p>You can register <code>plugins</code>, <code>job-listeners</code> and <code>trigger-listeners</code> through Quarkus configuration.</p>
 </div>
 <div class="paragraph">
-<p>The example bellow registers the plugin <code>org.quartz.plugins.history.LoggingJobHistoryPlugin</code> named as <code>jobHistory</code> with the property <code>jobSuccessMessage</code> defined as <code>Job [{1}.{0}] execution complete and reports: {8}</code></p>
+<p>The example below registers the plugin <code>org.quartz.plugins.history.LoggingJobHistoryPlugin</code> named as <code>jobHistory</code> with the property <code>jobSuccessMessage</code> defined as <code>Job [{1}.{0}] execution complete and reports: {8}</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="conf" class="language-conf hljs">quarkus.quartz.plugin.jobHistory.class=org.quartz.plugins.history.LoggingJobHistoryPlugin
-quarkus.quartz.plugin.jobHistory.jobSuccessMessage=Job [{1}.{0}] execution complete and reports: {8}</code></pre>
+<pre class="highlightjs highlight"><code data-lang="conf" class="language-conf hljs">quarkus.quartz.plugins.jobHistory.class=org.quartz.plugins.history.LoggingJobHistoryPlugin
+quarkus.quartz.plugins.jobHistory.properties.jobSuccessMessage=Job [{1}.{0}] execution complete and reports: {8}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You can also register a listener programmatically with an injected <code>org.quartz.Scheduler</code></p>
+<p>You can also register a listener programmatically with an injected <code>org.quartz.Scheduler</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -832,6 +835,20 @@ quarkus.quartz.plugin.jobHistory.jobSuccessMessage=Job [{1}.{0}] execution compl
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-quartz_quarkus.quartz.instance-name"></a><code><a href="#quarkus-quartz_quarkus.quartz.instance-name">quarkus.quartz.instance-name</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The name of the Quartz instance.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>QuarkusQuartzScheduler</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a id="quarkus-quartz_quarkus.quartz.thread-count"></a><code><a href="#quarkus-quartz_quarkus.quartz.thread-count">quarkus.quartz.thread-count</a></code></p>
 </div>
 <div class="openblock description">
@@ -873,8 +890,13 @@ quarkus.quartz.plugin.jobHistory.jobSuccessMessage=Job [{1}.{0}] execution compl
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
 </tr>
 <tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-quartz_quarkus.quartz.trigger-listeners-trigger-listeners"></a><a href="#quarkus-quartz_quarkus.quartz.trigger-listeners-trigger-listeners">Trigger listeners</a></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-quartz_quarkus.quartz.triggerlistener.-namedtriggerlistener-.class"></a><code><a href="#quarkus-quartz_quarkus.quartz.triggerlistener.-namedtriggerlistener-.class">quarkus.quartz.triggerListener."namedTriggerListener".class</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-quartz_quarkus.quartz.trigger-listeners.-listener-name-.class"></a><code><a href="#quarkus-quartz_quarkus.quartz.trigger-listeners.-listener-name-.class">quarkus.quartz.trigger-listeners."listener-name".class</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
@@ -888,21 +910,24 @@ quarkus.quartz.plugin.jobHistory.jobSuccessMessage=Job [{1}.{0}] execution compl
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-quartz_quarkus.quartz.triggerlistener.-namedtriggerlistener-propsandvalue"></a><code><a href="#quarkus-quartz_quarkus.quartz.triggerlistener.-namedtriggerlistener-propsandvalue">quarkus.quartz.triggerListener."namedTriggerListener"</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-quartz_quarkus.quartz.trigger-listeners.-listener-name-.properties-property-name"></a><code><a href="#quarkus-quartz_quarkus.quartz.trigger-listeners.-listener-name-.properties-property-name">quarkus.quartz.trigger-listeners."listener-name".properties</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
-<div class="paragraph">
-<p>The props name and the values for the props.</p>
-</div>
+
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Map&lt;String,String&gt;</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">required <span class="icon"><i class="fa fa-exclamation-circle" title="Configuration property is required"></i></span></p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-quartz_quarkus.quartz.job-listeners-job-listeners"></a><a href="#quarkus-quartz_quarkus.quartz.job-listeners-job-listeners">Job listeners</a></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-quartz_quarkus.quartz.joblistener.-namedjoblistener-.class"></a><code><a href="#quarkus-quartz_quarkus.quartz.joblistener.-namedjoblistener-.class">quarkus.quartz.jobListener."namedJobListener".class</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-quartz_quarkus.quartz.job-listeners.-listener-name-.class"></a><code><a href="#quarkus-quartz_quarkus.quartz.job-listeners.-listener-name-.class">quarkus.quartz.job-listeners."listener-name".class</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
@@ -916,21 +941,24 @@ quarkus.quartz.plugin.jobHistory.jobSuccessMessage=Job [{1}.{0}] execution compl
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-quartz_quarkus.quartz.joblistener.-namedjoblistener-propsandvalue"></a><code><a href="#quarkus-quartz_quarkus.quartz.joblistener.-namedjoblistener-propsandvalue">quarkus.quartz.jobListener."namedJobListener"</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-quartz_quarkus.quartz.job-listeners.-listener-name-.properties-property-name"></a><code><a href="#quarkus-quartz_quarkus.quartz.job-listeners.-listener-name-.properties-property-name">quarkus.quartz.job-listeners."listener-name".properties</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
-<div class="paragraph">
-<p>The props name and the values for the props.</p>
-</div>
+
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Map&lt;String,String&gt;</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">required <span class="icon"><i class="fa fa-exclamation-circle" title="Configuration property is required"></i></span></p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-quartz_quarkus.quartz.plugins-plugins"></a><a href="#quarkus-quartz_quarkus.quartz.plugins-plugins">Plugins</a></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-quartz_quarkus.quartz.plugin.-namedplugin-.class"></a><code><a href="#quarkus-quartz_quarkus.quartz.plugin.-namedplugin-.class">quarkus.quartz.plugin."namedPlugin".class</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-quartz_quarkus.quartz.plugins.-plugin-name-.class"></a><code><a href="#quarkus-quartz_quarkus.quartz.plugins.-plugin-name-.class">quarkus.quartz.plugins."plugin-name".class</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
@@ -944,17 +972,15 @@ quarkus.quartz.plugin.jobHistory.jobSuccessMessage=Job [{1}.{0}] execution compl
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-quartz_quarkus.quartz.plugin.-namedplugin-propsandvalue"></a><code><a href="#quarkus-quartz_quarkus.quartz.plugin.-namedplugin-propsandvalue">quarkus.quartz.plugin."namedPlugin"</a></code></p>
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-quartz_quarkus.quartz.plugins.-plugin-name-.properties-property-name"></a><code><a href="#quarkus-quartz_quarkus.quartz.plugins.-plugin-name-.properties-property-name">quarkus.quartz.plugins."plugin-name".properties</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
-<div class="paragraph">
-<p>The props name and the values for the props.</p>
-</div>
+
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Map&lt;String,String&gt;</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">required <span class="icon"><i class="fa fa-exclamation-circle" title="Configuration property is required"></i></span></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 </tr>
 </tbody>
 </table>

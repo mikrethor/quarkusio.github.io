@@ -89,6 +89,7 @@
 <li><a href="#the-jax-rs-endpoint">The JAX-RS endpoint</a></li>
 <li><a href="#the-servlet-endpoint">The Servlet endpoint</a></li>
 <li><a href="#the-vert-x-web-endpoint">The Vert.x Web endpoint</a></li>
+<li><a href="#the-funqy-http-endpoint">The Funqy HTTP endpoint</a></li>
 </ul>
 </li>
 <li><a href="#build-and-deploy-to-google-cloud">Build and Deploy to Google Cloud</a></li>
@@ -100,10 +101,10 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>The <code>quarkus-google-cloud-functions-http</code> extension allows you to write microservices with RESTEasy (JAX-RS),
-Undertow (Servlet) or Vert.x Web, and make these microservices deployable to the Google Cloud Functions runtime.</p>
+Undertow (Servlet), Vert.x Web, or <a href="funqy-http">Funqy HTTP</a>, and make these microservices deployable to the Google Cloud Functions runtime.</p>
 </div>
 <div class="paragraph">
-<p>One Google Cloud Functions deployment can represent any number of JAX-RS, Servlet, or Vert.x Web endpoints.</p>
+<p>One Google Cloud Functions deployment can represent any number of JAX-RS, Servlet, Vert.x Web, or <a href="funqy-http">Funqy HTTP</a> endpoints.</p>
 </div>
 <div class="paragraph">
 <p>As the Google Cloud Function Java engine is a new Beta feature of Google Cloud, this extension is flagged as experimental.</p>
@@ -164,7 +165,7 @@ Feedback is welcome on our <a href="https://groups.google.com/d/forum/quarkus-de
 <div class="sectionbody">
 <div class="paragraph">
 <p>This guide walks you through generating a sample project followed by creating three HTTP endpoints
-written with JAX-RS APIs, Servlet APIs or Vert.x Web APIs. Once built, you will be able to deploy
+written with JAX-RS APIs, Servlet APIs, Vert.x Web, or <a href="funqy-http">Funqy HTTP</a> APIs. Once built, you will be able to deploy
 the project to Google Cloud.</p>
 </div>
 <div class="paragraph">
@@ -192,7 +193,7 @@ You can use the following Maven command to create it:</p>
     -DprojectArtifactId=google-cloud-functions-http \
     -DclassName="org.acme.quickstart.GreetingResource" \
     -Dpath="/hello" \
-    -Dextensions="google-cloud-functions-http,resteasy-json,undertow,vertx-web"</code></pre>
+    -Dextensions="google-cloud-functions-http,resteasy-json,undertow,vertx-web,funqy-http"</code></pre>
 </div>
 </div>
 </div>
@@ -222,8 +223,8 @@ You can use the following Maven command to create it:</p>
 <h2 id="creating-the-endpoints"><a class="anchor" href="#creating-the-endpoints"></a>Creating the endpoints</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For this example project, we will create three endpoints, one for RESTEasy (JAX-RS), one for Undertow (Servlet)
-and one for Vert.x Web (reactive routes).</p>
+<p>For this example project, we will create four endpoints, one for RESTEasy (JAX-RS), one for Undertow (Servlet),
+one for Vert.x Web (reactive routes) and one for <a href="funqy-http">Funqy HTTP</a>.</p>
 </div>
 <div class="paragraph">
 <p>If you don&#8217;t need endpoints of each type, you can remove the corresponding extensions from your <code>pom.xml</code>.</p>
@@ -295,6 +296,21 @@ public class GreetingRoutes {
     void hello(RoutingContext context) {
         context.response().headers().set("Content-Type", "text/plain");
         context.response().setStatusCode(200).end("hello");
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="the-funqy-http-endpoint"><a class="anchor" href="#the-funqy-http-endpoint"></a>The Funqy HTTP endpoint</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">import io.quarkus.funqy.Funq;
+
+public class GreetingFunqy {
+    @Funq
+    public String funqy() {
+        return "Make it funqy";
     }
 }</code></pre>
 </div>
@@ -383,6 +399,9 @@ The result of the previous command is a single JAR file inside the <code>target/
 </li>
 <li>
 <p>For Vert.x Web: {httpsTrigger.url}/vertx/hello</p>
+</li>
+<li>
+<p>For Funqy: {httpsTrigger.url}/funqy</p>
 </li>
 </ul>
 </div>

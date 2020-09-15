@@ -103,6 +103,7 @@
 <ul class="sectlevel2">
 <li><a href="#packaging">Packaging</a></li>
 <li><a href="#connection-health-check">Connection Health Check</a></li>
+<li><a href="#driver-metrics">Driver metrics</a></li>
 <li><a href="#explore-cypher-and-the-graph">Explore Cypher and the Graph</a></li>
 <li><a href="#reactive">Going reactive</a></li>
 </ul>
@@ -697,6 +698,13 @@ to validate the connection to Neo4j.</p>
 </div>
 </div>
 <div class="sect2">
+<h3 id="driver-metrics"><a class="anchor" href="#driver-metrics"></a>Driver metrics</h3>
+<div class="paragraph">
+<p>If you are using a metrics extension and specify the config property <code>quarkus.neo4j.pool.metrics-enabled=true</code>, the Neo4j extension will
+expose several metrics related to the Neo4j connection pool.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="explore-cypher-and-the-graph"><a class="anchor" href="#explore-cypher-and-the-graph"></a>Explore Cypher and the Graph</h3>
 <div class="paragraph">
 <p>There are tons of options to model your domain within a Graph.
@@ -856,7 +864,7 @@ Typically, in the previous code, the session is closed when the stream completes
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
 </tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-neo4j_quarkus.neo4j.authentication"></a><a href="#quarkus-neo4j_quarkus.neo4j.authentication">Authentication</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-neo4j_quarkus.neo4j.authentication-authentication"></a><a href="#quarkus-neo4j_quarkus.neo4j.authentication-authentication">Authentication</a></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
@@ -903,7 +911,7 @@ Typically, in the previous code, the session is closed when the stream completes
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
 </tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-neo4j_quarkus.neo4j.trust-settings"></a><a href="#quarkus-neo4j_quarkus.neo4j.trust-settings">Configure trust settings for encrypted traffic</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-neo4j_quarkus.neo4j.trust-settings-configure-trust-settings-for-encrypted-traffic"></a><a href="#quarkus-neo4j_quarkus.neo4j.trust-settings-configure-trust-settings-for-encrypted-traffic">Configure trust settings for encrypted traffic</a></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
@@ -950,7 +958,7 @@ Typically, in the previous code, the session is closed when the stream completes
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
 </tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-neo4j_quarkus.neo4j.pool"></a><a href="#quarkus-neo4j_quarkus.neo4j.pool">Connection pool</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-neo4j_quarkus.neo4j.pool-connection-pool"></a><a href="#quarkus-neo4j_quarkus.neo4j.pool-connection-pool">Connection pool</a></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>

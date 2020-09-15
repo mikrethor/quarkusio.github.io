@@ -875,7 +875,7 @@ The returned <code>Publisher</code> is an instance of <code>io.smallrye.mutiny.M
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Specify whether the parser should remove standalone lines from the output. A standalone line is a line that contains only section tags, parameter declarations and whitespace characters.</p>
+<p>Specify whether the parser should remove standalone lines from the output. A standalone line is a line that contains at least one section tag, parameter declaration, or comment but no expression and no non-whitespace character.</p>
 </div>
 </div>
 </div></div></td>
@@ -894,7 +894,7 @@ The returned <code>Publisher</code> is an instance of <code>io.smallrye.mutiny.M
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Map&lt;String,String&gt;</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">required <span class="icon"><i class="fa fa-exclamation-circle" title="Configuration property is required"></i></span></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 </tr>
 </tbody>
 </table>

@@ -914,7 +914,7 @@ quarkus.hibernate-orm.sql-load-script=import.sql <i class="conum" data-value="4"
 quarkus.hibernate-search.elasticsearch.version=7 <i class="conum" data-value="5"></i><b>(5)</b>
 quarkus.hibernate-search.elasticsearch.analysis.configurer=org.acme.hibernate.search.elasticsearch.config.AnalysisConfigurer <i class="conum" data-value="6"></i><b>(6)</b>
 quarkus.hibernate-search.schema-management.strategy=drop-and-create <i class="conum" data-value="7"></i><b>(7)</b>
-quarkus.hibernate-search.elasticsearch.index-defaults.schema-management.required-status=yellow <i class="conum" data-value="8"></i><b>(8)</b>
+quarkus.hibernate-search.elasticsearch.schema-management.required-status=yellow <i class="conum" data-value="8"></i><b>(8)</b>
 quarkus.hibernate-search.automatic-indexing.synchronization.strategy=sync <i class="conum" data-value="9"></i><b>(9)</b></code></pre>
 </div>
 </div>
@@ -1335,7 +1335,7 @@ for more information.</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
 </tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.default-backend"></a><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.default-backend">Default backend</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.default-backend-default-backend"></a><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.default-backend-default-backend">Default backend</a></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
 </tr>
@@ -1531,7 +1531,7 @@ for more information.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.index-defaults.schema-management.required-status"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.index-defaults.schema-management.required-status">quarkus.hibernate-search.elasticsearch.index-defaults.schema-management.required-status</a></code></p>
+<p><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.schema-management.required-status"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.schema-management.required-status">quarkus.hibernate-search.elasticsearch.schema-management.required-status</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
@@ -1545,7 +1545,7 @@ for more information.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.index-defaults.schema-management.required-status-wait-timeout"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.index-defaults.schema-management.required-status-wait-timeout">quarkus.hibernate-search.elasticsearch.index-defaults.schema-management.required-status-wait-timeout</a></code></p>
+<p><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.schema-management.required-status-wait-timeout"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.schema-management.required-status-wait-timeout">quarkus.hibernate-search.elasticsearch.schema-management.required-status-wait-timeout</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
@@ -1560,13 +1560,13 @@ for more information.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.index-defaults.indexing.queue-count"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.index-defaults.indexing.queue-count">quarkus.hibernate-search.elasticsearch.index-defaults.indexing.queue-count</a></code></p>
+<p><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.indexing.queue-count"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.indexing.queue-count">quarkus.hibernate-search.elasticsearch.indexing.queue-count</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
 <p>The number of indexing queues assigned to each index.
- Higher values will lead to more connections being used in parallel, which may lead to higher indexing throughput, but incurs a risk of overloading Elasticsearch, i.e. of overflowing its HTTP request buffers and tripping <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.7/circuit-breaker.html">circuit breakers</a>, leading to Elasticsearch giving up on some request and resulting in indexing failures.</p>
+ Higher values will lead to more connections being used in parallel, which may lead to higher indexing throughput, but incurs a risk of overloading Elasticsearch, i.e. of overflowing its HTTP request buffers and tripping <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.8/circuit-breaker.html">circuit breakers</a>, leading to Elasticsearch giving up on some request and resulting in indexing failures.</p>
 </div>
 </div>
 </div></div></td>
@@ -1575,7 +1575,7 @@ for more information.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.index-defaults.indexing.queue-size"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.index-defaults.indexing.queue-size">quarkus.hibernate-search.elasticsearch.index-defaults.indexing.queue-size</a></code></p>
+<p><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.indexing.queue-size"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.indexing.queue-size">quarkus.hibernate-search.elasticsearch.indexing.queue-size</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
@@ -1590,13 +1590,13 @@ for more information.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.index-defaults.indexing.max-bulk-size"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.index-defaults.indexing.max-bulk-size">quarkus.hibernate-search.elasticsearch.index-defaults.indexing.max-bulk-size</a></code></p>
+<p><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.indexing.max-bulk-size"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.indexing.max-bulk-size">quarkus.hibernate-search.elasticsearch.indexing.max-bulk-size</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
 <p>The maximum size of bulk requests created when processing indexing queues.
- Higher values will lead to more documents being sent in each HTTP request sent to Elasticsearch, which may lead to higher indexing throughput, but incurs a risk of overloading Elasticsearch, i.e. of overflowing its HTTP request buffers and tripping <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.7/circuit-breaker.html">circuit breakers</a>, leading to Elasticsearch giving up on some request and resulting in indexing failures.
+ Higher values will lead to more documents being sent in each HTTP request sent to Elasticsearch, which may lead to higher indexing throughput, but incurs a risk of overloading Elasticsearch, i.e. of overflowing its HTTP request buffers and tripping <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.8/circuit-breaker.html">circuit breakers</a>, leading to Elasticsearch giving up on some request and resulting in indexing failures.
  Note that raising this number above the queue size has no effect, as bulks cannot include more requests than are contained in the queue.</p>
 </div>
 </div>
@@ -1641,7 +1641,7 @@ for more information.</p>
 <div class="content">
 <div class="paragraph">
 <p>The number of indexing queues assigned to each index.
- Higher values will lead to more connections being used in parallel, which may lead to higher indexing throughput, but incurs a risk of overloading Elasticsearch, i.e. of overflowing its HTTP request buffers and tripping <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.7/circuit-breaker.html">circuit breakers</a>, leading to Elasticsearch giving up on some request and resulting in indexing failures.</p>
+ Higher values will lead to more connections being used in parallel, which may lead to higher indexing throughput, but incurs a risk of overloading Elasticsearch, i.e. of overflowing its HTTP request buffers and tripping <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.8/circuit-breaker.html">circuit breakers</a>, leading to Elasticsearch giving up on some request and resulting in indexing failures.</p>
 </div>
 </div>
 </div></div></td>
@@ -1671,7 +1671,7 @@ for more information.</p>
 <div class="content">
 <div class="paragraph">
 <p>The maximum size of bulk requests created when processing indexing queues.
- Higher values will lead to more documents being sent in each HTTP request sent to Elasticsearch, which may lead to higher indexing throughput, but incurs a risk of overloading Elasticsearch, i.e. of overflowing its HTTP request buffers and tripping <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.7/circuit-breaker.html">circuit breakers</a>, leading to Elasticsearch giving up on some request and resulting in indexing failures.
+ Higher values will lead to more documents being sent in each HTTP request sent to Elasticsearch, which may lead to higher indexing throughput, but incurs a risk of overloading Elasticsearch, i.e. of overflowing its HTTP request buffers and tripping <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.8/circuit-breaker.html">circuit breakers</a>, leading to Elasticsearch giving up on some request and resulting in indexing failures.
  Note that raising this number above the queue size has no effect, as bulks cannot include more requests than are contained in the queue.</p>
 </div>
 </div>
@@ -1680,23 +1680,9 @@ for more information.</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>100</code></p></td>
 </tr>
 <tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.additional-backends"></a><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.additional-backends">Additional backends</a></p></th>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.named-backends-named-backends"></a><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.named-backends-named-backends">Named backends</a></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.default-backend"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.default-backend">quarkus.hibernate-search.elasticsearch.default-backend</a></code></p>
-</div>
-<div class="openblock description">
-<div class="content">
-<div class="paragraph">
-<p>Only useful when defining <code>backends additional backends</code>: the name of the default backend, i.e. the backend that will be assigned to <code>@Indexed</code> entities that do not specify a backend explicitly through <code>@Indexed(backend = &#8230;&#8203;)</code>.</p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -1890,7 +1876,7 @@ for more information.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.backends.-backend-name-.index-defaults.schema-management.required-status"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.backends.-backend-name-.index-defaults.schema-management.required-status">quarkus.hibernate-search.elasticsearch.backends."backend-name".index-defaults.schema-management.required-status</a></code></p>
+<p><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.backends.-backend-name-.schema-management.required-status"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.backends.-backend-name-.schema-management.required-status">quarkus.hibernate-search.elasticsearch.backends."backend-name".schema-management.required-status</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
@@ -1904,7 +1890,7 @@ for more information.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.backends.-backend-name-.index-defaults.schema-management.required-status-wait-timeout"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.backends.-backend-name-.index-defaults.schema-management.required-status-wait-timeout">quarkus.hibernate-search.elasticsearch.backends."backend-name".index-defaults.schema-management.required-status-wait-timeout</a></code></p>
+<p><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.backends.-backend-name-.schema-management.required-status-wait-timeout"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.backends.-backend-name-.schema-management.required-status-wait-timeout">quarkus.hibernate-search.elasticsearch.backends."backend-name".schema-management.required-status-wait-timeout</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
@@ -1919,13 +1905,13 @@ for more information.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.backends.-backend-name-.index-defaults.indexing.queue-count"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.backends.-backend-name-.index-defaults.indexing.queue-count">quarkus.hibernate-search.elasticsearch.backends."backend-name".index-defaults.indexing.queue-count</a></code></p>
+<p><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.backends.-backend-name-.indexing.queue-count"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.backends.-backend-name-.indexing.queue-count">quarkus.hibernate-search.elasticsearch.backends."backend-name".indexing.queue-count</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
 <p>The number of indexing queues assigned to each index.
- Higher values will lead to more connections being used in parallel, which may lead to higher indexing throughput, but incurs a risk of overloading Elasticsearch, i.e. of overflowing its HTTP request buffers and tripping <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.7/circuit-breaker.html">circuit breakers</a>, leading to Elasticsearch giving up on some request and resulting in indexing failures.</p>
+ Higher values will lead to more connections being used in parallel, which may lead to higher indexing throughput, but incurs a risk of overloading Elasticsearch, i.e. of overflowing its HTTP request buffers and tripping <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.8/circuit-breaker.html">circuit breakers</a>, leading to Elasticsearch giving up on some request and resulting in indexing failures.</p>
 </div>
 </div>
 </div></div></td>
@@ -1934,7 +1920,7 @@ for more information.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.backends.-backend-name-.index-defaults.indexing.queue-size"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.backends.-backend-name-.index-defaults.indexing.queue-size">quarkus.hibernate-search.elasticsearch.backends."backend-name".index-defaults.indexing.queue-size</a></code></p>
+<p><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.backends.-backend-name-.indexing.queue-size"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.backends.-backend-name-.indexing.queue-size">quarkus.hibernate-search.elasticsearch.backends."backend-name".indexing.queue-size</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
@@ -1949,13 +1935,13 @@ for more information.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.backends.-backend-name-.index-defaults.indexing.max-bulk-size"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.backends.-backend-name-.index-defaults.indexing.max-bulk-size">quarkus.hibernate-search.elasticsearch.backends."backend-name".index-defaults.indexing.max-bulk-size</a></code></p>
+<p><a id="quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.backends.-backend-name-.indexing.max-bulk-size"></a><code><a href="#quarkus-hibernate-search-elasticsearch_quarkus.hibernate-search.elasticsearch.backends.-backend-name-.indexing.max-bulk-size">quarkus.hibernate-search.elasticsearch.backends."backend-name".indexing.max-bulk-size</a></code></p>
 </div>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
 <p>The maximum size of bulk requests created when processing indexing queues.
- Higher values will lead to more documents being sent in each HTTP request sent to Elasticsearch, which may lead to higher indexing throughput, but incurs a risk of overloading Elasticsearch, i.e. of overflowing its HTTP request buffers and tripping <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.7/circuit-breaker.html">circuit breakers</a>, leading to Elasticsearch giving up on some request and resulting in indexing failures.
+ Higher values will lead to more documents being sent in each HTTP request sent to Elasticsearch, which may lead to higher indexing throughput, but incurs a risk of overloading Elasticsearch, i.e. of overflowing its HTTP request buffers and tripping <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.8/circuit-breaker.html">circuit breakers</a>, leading to Elasticsearch giving up on some request and resulting in indexing failures.
  Note that raising this number above the queue size has no effect, as bulks cannot include more requests than are contained in the queue.</p>
 </div>
 </div>
@@ -2000,7 +1986,7 @@ for more information.</p>
 <div class="content">
 <div class="paragraph">
 <p>The number of indexing queues assigned to each index.
- Higher values will lead to more connections being used in parallel, which may lead to higher indexing throughput, but incurs a risk of overloading Elasticsearch, i.e. of overflowing its HTTP request buffers and tripping <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.7/circuit-breaker.html">circuit breakers</a>, leading to Elasticsearch giving up on some request and resulting in indexing failures.</p>
+ Higher values will lead to more connections being used in parallel, which may lead to higher indexing throughput, but incurs a risk of overloading Elasticsearch, i.e. of overflowing its HTTP request buffers and tripping <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.8/circuit-breaker.html">circuit breakers</a>, leading to Elasticsearch giving up on some request and resulting in indexing failures.</p>
 </div>
 </div>
 </div></div></td>
@@ -2030,7 +2016,7 @@ for more information.</p>
 <div class="content">
 <div class="paragraph">
 <p>The maximum size of bulk requests created when processing indexing queues.
- Higher values will lead to more documents being sent in each HTTP request sent to Elasticsearch, which may lead to higher indexing throughput, but incurs a risk of overloading Elasticsearch, i.e. of overflowing its HTTP request buffers and tripping <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.7/circuit-breaker.html">circuit breakers</a>, leading to Elasticsearch giving up on some request and resulting in indexing failures.
+ Higher values will lead to more documents being sent in each HTTP request sent to Elasticsearch, which may lead to higher indexing throughput, but incurs a risk of overloading Elasticsearch, i.e. of overflowing its HTTP request buffers and tripping <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.8/circuit-breaker.html">circuit breakers</a>, leading to Elasticsearch giving up on some request and resulting in indexing failures.
  Note that raising this number above the queue size has no effect, as bulks cannot include more requests than are contained in the queue.</p>
 </div>
 </div>

@@ -206,7 +206,8 @@ by making them implement <code>PanacheRepository</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="kotlin" class="language-kotlin hljs">class PersonRepository: PanacheRepository&lt;Person&gt; {
+<pre class="highlightjs highlight"><code data-lang="kotlin" class="language-kotlin hljs">@ApplicationScoped
+class PersonRepository: PanacheRepository&lt;Person&gt; {
      fun findByName(name: String) = find("name", name).firstResult()
      fun findAlive() = list("status", Status.Alive)
      fun deleteStefs() = delete("name", "Stef")

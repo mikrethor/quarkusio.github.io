@@ -5,7 +5,21 @@
         <title>Quarkus</title>
         <link>https://quarkus.io</link>
         <description>Quarkus: Supersonic Subatomic Java</description>
-        <lastBuildDate>Mon, 14 Sep 2020 11:08:39 +0000</lastBuildDate>
+        <lastBuildDate>Tue, 15 Sep 2020 10:57:30 +0000</lastBuildDate>
+        
+        <item>
+            <title>Handling paginated APIs with Mutiny</title>
+            <link>
+                https://quarkus.io/blog/mutiny-pagination/
+            </link>
+            <description>
+                At the beginning of the Mutiny adventure, my friend Alex came to me with an interesting problem. Alex wanted to retrieve data from a REST service in a reactive manner. So far, no problem, we have everything for this in our toolbox. But, this service, as many services, is using...
+            </description>
+            <pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/mutiny-pagination/
+            </guid>
+        </item>
         
         <item>
             <title>Wipro Addresses Seismic Shift in Retail with Quarkus</title>
@@ -130,20 +144,6 @@
             <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
             <guid>
                 https://quarkus.io/blog/backports-application/
-            </guid>
-        </item>
-        
-        <item>
-            <title>How to handle failures with Mutiny</title>
-            <link>
-                https://quarkus.io/blog/mutiny-failure-handling/
-            </link>
-            <description>
-                In the past week, I got several questions about failure handling with Mutiny. So, maybe it deserves a bit more explanation. Failures are events First, Mutiny is an event-driven reactive programming library. With Mutiny, you handle events. An upstream Uni or Multi propagates these events and gives you the possibility...
-            </description>
-            <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
-            <guid>
-                https://quarkus.io/blog/mutiny-failure-handling/
             </guid>
         </item>
         

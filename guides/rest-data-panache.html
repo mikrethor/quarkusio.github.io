@@ -93,6 +93,7 @@
 <li><a href="#available-options">Available options</a></li>
 </ul>
 </li>
+<li><a href="#query-parameters">Query parameters</a></li>
 <li><a href="#response-body-examples">Response body examples</a>
 <ul class="sectlevel2">
 <li><a href="#get-people1">GET /people/1</a></li>
@@ -332,6 +333,31 @@ Default is <code>true</code>.</p>
 </li>
 </ul>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="query-parameters"><a class="anchor" href="#query-parameters"></a>Query parameters</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>REST Data with Panache supports the following query parameters with the generated resources.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>page</code> - a page number which should be returned by a list operation.
+It applies to the paged resources only and is a number starting with 0. Default is 0.</p>
+</li>
+<li>
+<p><code>size</code> - a page size which should be returned by a list operation.
+It applies to the paged resources only and is a number starting with 1. Default is 20.</p>
+</li>
+<li>
+<p><code>sort</code> - a comma separated list of fields which should be used for sorting a result of a list operation.
+Fields are sorted in the ascending order unless they&#8217;re prefixed with a <code>-</code>.
+E.g. <code>?sort=name,-age</code> will sort the result by the name ascending by the age descending.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

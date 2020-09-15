@@ -163,13 +163,6 @@ This enhancements are omitted because upstream OpenJDK does not manage them, and
 This is particularly important when it comes to conformance and security.</p>
 </li>
 <li>
-<p>Mandrel is only available for projects that can be compiled with Java 11.
-If you are using Java 8,
-you should consider using Oracle GraalVM instead.
-The reason for not using Java 8 is because it&#8217;s a legacy release,
-which most Quarkus users are unlikely to need.</p>
-</li>
-<li>
 <p>Mandrel is currently only recommended for building native executables that target Linux containerized environments.
 This means that Mandrel users should use containers to build their native executables.
 If you are building native executables for macOS or Windows target platforms,
@@ -183,6 +176,22 @@ and <a href="https://github.com/graalvm/mandrel/releases">Mandrel releases</a>.<
 </div>
 <div class="paragraph">
 <p>The prerequisites vary slightly depending on whether you are using Oracle GraalVM CE/EE or Mandrel.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="title">Install the Java 11 version of GraalVM</div>
+<div class="paragraph">
+<p>While Oracle GraalVM is available for both Java 8 and Java 11 (Mandrel only supports Java 11), Quarkus only works with the Java 11 version.
+If you use the Oracle distribution, make sure to install the Java 11 version.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -238,7 +247,7 @@ and follow the Mandrel-specific instructions in that section.</p>
 <p>A <a href="#configuring-c-development">working C development environment</a></p>
 </li>
 <li>
-<p>GraalVM version 20.1.0 installed and <a href="#configuring-graalvm">configured appropriately</a></p>
+<p>GraalVM version 20.1.0 (be sure to install the Java 11 support) installed and <a href="#configuring-graalvm">configured appropriately</a></p>
 </li>
 <li>
 <p>A working container runtime (Docker, podman)</p>
@@ -311,14 +320,15 @@ sudo apt-get install build-essential libz-dev zlib1g-dev</code></pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Install GraalVM if you haven&#8217;t already. You have a few options for this:</p>
+<p>Install GraalVM (pick the java 11 version) if you haven&#8217;t already. You have a few options for this:</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Use platform-specific install tools like <a href="https://github.com/graalvm/homebrew-tap">homebrew</a>, <a href="https://sdkman.io/jdks#Oracle">sdkman</a>, or <a href="https://github.com/ScoopInstaller/Java">scoop</a>.</p>
 </li>
 <li>
-<p>Download the appropriate Community Edition archive from <a href="https://github.com/graalvm/graalvm-ce-builds/releases" class="bare">https://github.com/graalvm/graalvm-ce-builds/releases</a>, and unpack it like you would any other JDK.</p>
+<p>Download the appropriate Community Edition archive from <a href="https://github.com/graalvm/graalvm-ce-builds/releases" class="bare">https://github.com/graalvm/graalvm-ce-builds/releases</a>, and unpack it like you would any other JDK.
+Make sure to download and install at Java 11 version.</p>
 </li>
 </ul>
 </div>
@@ -1265,7 +1275,7 @@ These are provided in <code>application.properties</code> the same as any other 
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>quay.io/quarkus/ubi-quarkus-native-image:20.1.0-java11</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>quay.io/quarkus/ubi-quarkus-native-image:20.2.0-java11</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">

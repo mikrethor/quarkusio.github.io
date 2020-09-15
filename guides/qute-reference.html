@@ -84,7 +84,7 @@
 <li><a href="#core-features">2. Core Features</a>
 <ul class="sectlevel2">
 <li><a href="#syntax-and-building-blocks">2.1. Syntax and Building Blocks</a></li>
-<li><a href="#identifiers">2.2. Identifiers</a></li>
+<li><a href="#identifiers">2.2. Identifiers and Tags</a></li>
 <li><a href="#removing-standalone-lines-from-the-template">2.3. Removing Standalone Lines From the Template</a></li>
 <li><a href="#engine-configuration">2.4. Engine Configuration</a></li>
 </ul>
@@ -303,7 +303,7 @@ In Quarkus, the caching is done automatically.
 <div class="ulist">
 <ul>
 <li>
-<p>May contain expressions and sections: <code>{#if foo}{foo.name}{/if}</code>,</p>
+<p>May contain expressions and nested sections: <code>{#if foo}{foo.name}{/if}</code>,</p>
 </li>
 <li>
 <p>The name in the closing tag is optional: <code>{#if active}ACTIVE!{/}</code>,</p>
@@ -337,22 +337,58 @@ In Quarkus, the caching is done automatically.
 </div>
 </div>
 <div class="sect2">
-<h3 id="identifiers"><a class="anchor" href="#identifiers"></a>2.2. Identifiers</h3>
+<h3 id="identifiers"><a class="anchor" href="#identifiers"></a>2.2. Identifiers and Tags</h3>
 <div class="paragraph">
-<p>Expressions/tags must start with a curly bracket (<code>{</code>) followed by a valid identifier.
-A valid identifier is a digit, an alphabet character, underscore (<code>_</code>), or a section command (<code>#</code>).
-Expressions/tags starting with an invalid identifier are ignored.
-A closing curly bracket (<code>}</code>) is ignored if not inside an expression/tag.</p>
+<p>Identifiers are used in expressions and section tags.
+A valid identifier is a sequence of non-whitespace characters.
+However, users are encouraged to only use valid Java identifiers in expressions.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can use bracket notation if you need to specify an identifier that contains a dot, e.g. <code>{map['my.key']}</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When parsing a template document the parser identifies all <em>tags</em>.
+A tag starts and ends with a curly bracket, e.g. <code>{foo}</code>.
+The content of a tag must start with:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a digit, or</p>
+</li>
+<li>
+<p>an alphabet character, or</p>
+</li>
+<li>
+<p>underscore, or</p>
+</li>
+<li>
+<p>a built-in command: <code>#</code>, <code>!</code>, <code>@</code>, <code>/</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If it does not start with any of the above it is ignored by the parser.</p>
 </div>
 <div class="listingblock">
-<div class="title">hello.html</div>
+<div class="title">Tag Examples</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="html" class="language-html hljs">&lt;html&gt;
    &lt;body&gt;
-   {_foo}       <i class="conum" data-value="1"></i><b>(1)</b>
-   {  foo}      <i class="conum" data-value="2"></i><b>(2)</b>
-   {{foo}}      <i class="conum" data-value="3"></i><b>(3)</b>
-   {"foo":true} <i class="conum" data-value="4"></i><b>(4)</b>
+   {_foo.bar}   <i class="conum" data-value="1"></i><b>(1)</b>
+   {! comment !}<i class="conum" data-value="2"></i><b>(2)</b>
+   {  foo}      <i class="conum" data-value="3"></i><b>(3)</b>
+   {{foo}}      <i class="conum" data-value="4"></i><b>(4)</b>
+   {"foo":true} <i class="conum" data-value="5"></i><b>(5)</b>
    &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 </div>
@@ -361,19 +397,23 @@ A closing curly bracket (<code>}</code>) is ignored if not inside an expression/
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Evaluated: expression starts with underscore.</td>
+<td>Parsed: an expression that starts with underscore.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Ignored: expression starts with whitespace.</td>
+<td>Parsed: a comment</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Ignored: expression starts with <code>{</code>.</td>
+<td>Ignored: starts with whitespace.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Ignored: expression starts with <code>"</code>.</td>
+<td>Ignored: starts with <code>{</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Ignored: starts with <code>"</code>.</td>
 </tr>
 </table>
 </div>
@@ -384,7 +424,7 @@ A closing curly bracket (<code>}</code>) is ignored if not inside an expression/
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-It is also possible to use escape sequences <code>\{</code> and <code>\}</code> to insert delimiters in the text. In fact, an escape sequence is usually only needed for the start delimiter, ie. <code>\{foo}</code> will be rendered as <code>{foo}</code> (no evaluation will happen).
+It is also possible to use escape sequences <code>\{</code> and <code>\}</code> to insert delimiters in the text. In fact, an escape sequence is usually only needed for the start delimiter, ie. <code>\{foo}</code> will be rendered as <code>{foo}</code> (no parsing/evaluation will happen).
 </td>
 </tr>
 </table>
@@ -394,7 +434,7 @@ It is also possible to use escape sequences <code>\{</code> and <code>\}</code> 
 <h3 id="removing-standalone-lines-from-the-template"><a class="anchor" href="#removing-standalone-lines-from-the-template"></a>2.3. Removing Standalone Lines From the Template</h3>
 <div class="paragraph">
 <p>By default, Qute parser removes standalone lines from the template output.
-A <strong>standalone line</strong> is a line that contains at least one section tag (e.g. <code>{#each}</code> and <code>{/each}</code>) or parameter declaration (e.g. <code>{@org.acme.Foo foo}</code>) but no expression and non-whitespace character.
+A <strong>standalone line</strong> is a line that contains at least one section tag (e.g. <code>{#each}</code> and <code>{/each}</code>), parameter declaration (e.g. <code>{@org.acme.Foo foo}</code>) or comment but no expression and no non-whitespace character.
 In other words, a line that contains no section tag or a parameter declaration is <strong>not</strong> a standalone line.
 Likewise, a line that contains an <em>expression</em> or a <em>non-whitespace character</em> is <strong>not</strong> a standalone line.</p>
 </div>
@@ -470,7 +510,8 @@ In this case, all whitespace characters from a standalone line will be printed t
 <div class="paragraph">
 <p>An expression outputs a value.
 It consists of one or more parts separated by dot (dot notation) or square brackets (bracket notation).
-In the <code>object[property_name]</code> syntax, the <code>property_name</code> has to be a non-null <a href="#literals">literal</a> value.
+In the <code>object.property</code> (dot notation) syntax, the <code>property</code> must be a <a href="#identifiers">valid identifier&gt;.
+In the <code>object[property_name]</code> (bracket notation) syntax, the <code>property_name</code> has to be a non-null &lt;&lt;literals, literal</a> value.
 An expression could start with an optional namespace followed by a colon (<code>:</code>).</p>
 </div>
 <div class="listingblock">
@@ -503,10 +544,11 @@ An expression could start with an optional namespace followed by a colon (<code>
 </table>
 </div>
 <div class="paragraph">
-<p>A part of an expression could be a <em>virtual method</em> in which case the name can be followed by a list of comma-separated parameters in parentheses:</p>
+<p>A part of an expression could be a <em>virtual method</em> in which case the name can be followed by a list of comma-separated parameters in parentheses.
+A parameter of a virtual method can be either a nested expression or a <a href="#literals">literal</a> value.</p>
 </div>
 <div class="listingblock">
-<div class="title">Virtual Method Example</div>
+<div class="title">Virtual Methods Example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">{item.getLabels(1)} <i class="conum" data-value="1"></i><b>(1)</b>
 {name or 'John'} <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
@@ -521,18 +563,6 @@ An expression could start with an optional namespace followed by a colon (<code>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>infix notation, translated to <code>name.or('John')</code>; no namespace, two parts - <code>name</code>, <code>or('John')</code></td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-A parameter of a virtual method can be a <a href="#literals">literal</a> value.
-</td>
 </tr>
 </table>
 </div>
@@ -1183,9 +1213,38 @@ This could be useful to simplify the template structure:</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="include_helper"><a class="anchor" href="#include_helper"></a>2.3.2.5. Include/Insert Sections</h5>
+<h5 id="include_helper"><a class="anchor" href="#include_helper"></a>2.3.2.5. Include Section</h5>
 <div class="paragraph">
-<p>These sections can be used to include another template and possibly override some parts of the template (template inheritance).</p>
+<p>This section can be used to include another template and possibly override some parts of the template (template inheritance).</p>
+</div>
+<div class="listingblock">
+<div class="title">Simple Example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="html" class="language-html hljs">&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;title&gt;Simple Include&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  {#include foo limit=10 /} <i class="conum" data-value="1"></i><b>(1)</b><i class="conum" data-value="2"></i><b>(2)</b>
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Include a template with id <code>foo</code>. The included template can reference data from the current context.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>It&#8217;s also possible to define optional parameters that can be used in the included template.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Template inheritance makes it possible to reuse template layouts.</p>
 </div>
 <div class="listingblock">
 <div class="title">Template "base"</div>
@@ -2103,7 +2162,33 @@ Subsequently, the bundles can be used at runtime:</p>
 <p>Injected in your beans via <code>@Inject</code>; e.g. <code>@Inject AppMessages</code></p>
 </li>
 <li>
-<p>Referenced in the templates via the message bundle name; e.g. <code>{msg:hello_name('Lucie')}</code></p>
+<p>Referenced in the templates via the message bundle namespace:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="html" class="language-html hljs"> {msg:hello_name('Lucie')} <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b>
+ {msg:message(myKey,'Lu')} <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>msg</code> is the default namespace.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>hello_name</code> is the message key.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>Lucie</code> is the parameter of the message bundle interface method.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>It is also possible to obtain a localized message for a key resolved at runtime using a reserved key <code>message</code>. The validation is skipped in this case though.</td>
+</tr>
+</table>
+</div>
 </li>
 </ol>
 </div>
@@ -2320,7 +2405,7 @@ But in fact, the suffix could be anything.</p>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Specify whether the parser should remove standalone lines from the output. A standalone line is a line that contains only section tags, parameter declarations and whitespace characters.</p>
+<p>Specify whether the parser should remove standalone lines from the output. A standalone line is a line that contains at least one section tag, parameter declaration, or comment but no expression and no non-whitespace character.</p>
 </div>
 </div>
 </div></div></td>
@@ -2339,7 +2424,7 @@ But in fact, the suffix could be anything.</p>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Map&lt;String,String&gt;</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">required <span class="icon"><i class="fa fa-exclamation-circle" title="Configuration property is required"></i></span></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 </tr>
 </tbody>
 </table>

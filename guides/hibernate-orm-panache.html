@@ -108,6 +108,7 @@
 <li><a href="#query-projection">Query projection</a></li>
 </ul>
 </li>
+<li><a href="#multiple-persistence-units">Multiple Persistence Units</a></li>
 <li><a href="#transactions">Transactions</a></li>
 <li><a href="#lock-management">Lock management</a>
 <ul class="sectlevel2">
@@ -943,6 +944,27 @@ This is enabled by default if you are using the Quarkus Maven archetype. If you 
 </tr>
 </table>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="multiple-persistence-units"><a class="anchor" href="#multiple-persistence-units"></a>Multiple Persistence Units</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The support for multiple persistence units is described in detail in <a href="hibernate-orm#multiple-persistence-units">the Hibernate ORM guide</a>.</p>
+</div>
+<div class="paragraph">
+<p>When using Panache, things are simple:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A given Panache entity can be attached to only a single persistence unit.</p>
+</li>
+<li>
+<p>Given that, Panache already provides the necessary plumbing to transparently find the appropriate <code>EntityManager</code> associated to a Panache entity.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

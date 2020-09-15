@@ -504,9 +504,9 @@ The following sections will show you everything there is to know about it.</p>
 <p>When a method annotated with <code>@CacheResult</code> is invoked, Quarkus will compute a cache key and use it to check in the cache whether the method has been already invoked.
 If the method has one or more arguments, the key computation is done from all the method arguments if none of them is annotated with <code>@CacheKey</code>, or all the arguments annotated with <code>@CacheKey</code> otherwise.
 Each non-primitive method argument that is part of the key must implement <code>equals()</code> and <code>hashCode()</code> correctly for the cache to work as expected.
-This annotation can also be used on a method with no arguments, a default key derived from the cache name is generated in that case.
+This annotation can also be used on a method with no arguments, a default key derived from the cache name is used in that case.
 If a value is found in the cache, it is returned and the annotated method is never actually executed.
-If no value is found, the annotated method is invoked and the returned value is stored in the cache using the computed or generated key.</p>
+If no value is found, the annotated method is invoked and the returned value is stored in the cache using the computed key.</p>
 </div>
 <div class="paragraph">
 <p>A method annotated with <code>CacheResult</code> is protected by a lock on cache miss mechanism.
@@ -543,22 +543,8 @@ See <a href="#negative-cache">more on this topic below</a>.</p>
 <div class="paragraph">
 <p>When a method annotated with <code>@CacheInvalidate</code> is invoked, Quarkus will compute a cache key and use it to try to remove an existing entry from the cache.
 If the method has one or more arguments, the key computation is done from all the method arguments if none of them is annotated with <code>@CacheKey</code>, or all the arguments annotated with <code>@CacheKey</code> otherwise.
-This annotation can also be used on a method with no arguments, a default key derived from the cache name is generated in that case.
+This annotation can also be used on a method with no arguments, a default key derived from the cache name is used in that case.
 If the key does not identify any cache entry, nothing will happen.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>If the <code>@CacheResult</code> or <code>@CacheInvalidate</code> annotations are used on a method with no parameters, a unique default cache key derived from the cache name will be generated and used.</p>
-</div>
-</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect2">
@@ -923,7 +909,7 @@ public class CachedService {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>A unique default cache key derived from the cache name is generated and used.</td>
+<td>A unique default cache key derived from the cache name is used because the method has no arguments.</td>
 </tr>
 </table>
 </div>

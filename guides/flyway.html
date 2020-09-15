@@ -350,6 +350,20 @@ Also, you can customize the Flyway behaviour by using the following properties:<
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-flyway_quarkus.flyway.ignore-missing-migrations"></a><code><a href="#quarkus-flyway_quarkus.flyway.ignore-missing-migrations">quarkus.flyway.ignore-missing-migrations</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Ignore missing migrations when reading the history table. When set to true any migration present in the history table but absent in the configured locations will be ignored (and logged as a warning), when false (the default) the validation step will fail.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a id="quarkus-flyway_quarkus.flyway.create-schemas"></a><code><a href="#quarkus-flyway_quarkus.flyway.create-schemas">quarkus.flyway.create-schemas</a></code></p>
 </div>
 <div class="openblock description">
@@ -418,7 +432,7 @@ Also, you can customize the Flyway behaviour by using the following properties:<
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Map&lt;String,String&gt;</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">required <span class="icon"><i class="fa fa-exclamation-circle" title="Configuration property is required"></i></span></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -590,6 +604,20 @@ Also, you can customize the Flyway behaviour by using the following properties:<
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-flyway_quarkus.flyway.-named-data-sources-.ignore-missing-migrations"></a><code><a href="#quarkus-flyway_quarkus.flyway.-named-data-sources-.ignore-missing-migrations">quarkus.flyway."named-data-sources".ignore-missing-migrations</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Ignore missing migrations when reading the history table. When set to true any migration present in the history table but absent in the configured locations will be ignored (and logged as a warning), when false (the default) the validation step will fail.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a id="quarkus-flyway_quarkus.flyway.-named-data-sources-.placeholders-placeholders"></a><code><a href="#quarkus-flyway_quarkus.flyway.-named-data-sources-.placeholders-placeholders">quarkus.flyway."named-data-sources".placeholders</a></code></p>
 </div>
 <div class="openblock description">
@@ -600,7 +628,7 @@ Also, you can customize the Flyway behaviour by using the following properties:<
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Map&lt;String,String&gt;</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">required <span class="icon"><i class="fa fa-exclamation-circle" title="Configuration property is required"></i></span></p></td>
+<td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
