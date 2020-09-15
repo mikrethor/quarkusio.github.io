@@ -5,7 +5,21 @@
         <title>Quarkus</title>
         <link>https://quarkus.io</link>
         <description>Quarkus: Supersonic Subatomic Java</description>
-        <lastBuildDate>Tue, 15 Sep 2020 10:57:30 +0000</lastBuildDate>
+        <lastBuildDate>Tue, 15 Sep 2020 12:17:26 +0000</lastBuildDate>
+        
+        <item>
+            <title>Quarkus 1.8 released - Multiple Persistence Units, Micrometer, jbang, GraalVM 20.2</title>
+            <link>
+                https://quarkus.io/blog/quarkus-1-8-0-final-released/
+            </link>
+            <description>
+                We have been hard at work during Summer to bake Quarkus 1.8. It comes with some shiny new features, among them: Multiple persistence units support for the Hibernate ORM extension A new Micrometer extension jbang integration for easy Quarkus-based scripting An update to GraalVM 20.2 As usual, it also comes...
+            </description>
+            <pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/quarkus-1-8-0-final-released/
+            </guid>
+        </item>
         
         <item>
             <title>Handling paginated APIs with Mutiny</title>
@@ -130,20 +144,6 @@
             <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
             <guid>
                 https://quarkus.io/blog/quarkus-day-2020/
-            </guid>
-        </item>
-        
-        <item>
-            <title>From zero to hero on backporting pull requests</title>
-            <link>
-                https://quarkus.io/blog/backports-application/
-            </link>
-            <description>
-                The Quarkus project moves fast and when we prepare bugfix releases, we usually have several dozens of pull requests to backport. The number of pull requests to backport is enormous and doing it via the GitHub UI is inconvenient and takes a lot of time (click PR, copy/paste commit hashes...
-            </description>
-            <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
-            <guid>
-                https://quarkus.io/blog/backports-application/
             </guid>
         </item>
         

@@ -103,10 +103,10 @@
       <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Quarkus provides integration with <a href="https://jbang.dev">jbang</a>] which allows you to write java scripts/applications requiring no maven nor gradle to get running.</p>
+<p>Quarkus provides integration with <a href="https://jbang.dev">jbang</a> which allows you to write Java scripts/applications requiring no Maven nor Gradle to get running.</p>
 </div>
 <div class="paragraph">
-<p>In this guide, we will see how you can write a REST application using just a singe java file.</p>
+<p>In this guide, we will see how you can write a REST application using just a single Java file.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -231,7 +231,7 @@ public class quarkusapp {
 <h2 id="creating-the-initial-file"><a class="anchor" href="#creating-the-initial-file"></a>Creating the initial file</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>First, we need a java file. jbang lets you create an initial version using:</p>
+<p>First, we need a Java file. jbang lets you create an initial version using:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -240,7 +240,7 @@ cd scripting</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This command generates a .java file that you can directly run on Linux and OS X, i.e. <code>./quarkusapp.java</code> - on Windows you need to use <code>jbang quarkusapp.java</code></p>
+<p>This command generates a .java file that you can directly run on Linux and macOS, i.e. <code>./quarkusapp.java</code> - on Windows you need to use <code>jbang quarkusapp.java</code>.</p>
 </div>
 <div class="paragraph">
 <p>This initial version will print <code>Hello World</code> when run.</p>
@@ -257,7 +257,7 @@ cd scripting</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This line is what on Linux and OS X allows you to run it as a script. On Windows this line is ignored.</p>
+<p>This line is what on Linux and macOS allows you to run it as a script. On Windows this line is ignored.</p>
 </div>
 <div class="paragraph">
 <p>The next line</p>
@@ -279,7 +279,7 @@ cd scripting</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Now, run <code>jbang quarkusapp.java</code> and you will see <code>jbang</code> resolving this dependency and building the jar with help from Quarkus jbang integration.</p>
+<p>Now, run <code>jbang quarkusapp.java</code> and you will see <code>jbang</code> resolving this dependency and building the jar with help from Quarkus' jbang integration.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -309,11 +309,11 @@ Hello World</code></pre>
 <td class="content">
 <div class="title">How do I edit this file and get content assist ?</div>
 <div class="paragraph">
-<p>As there is nothing but a <code>.java</code> file most IDE&#8217;s does not handle content assist well.
+<p>As there is nothing but a <code>.java</code> file, most IDE&#8217;s does not handle content assist well.
 To work around that you can run <code>jbang edit quarkusapp.java</code> which will print out a directory that will have a temporary project setup you can use in your IDE.</p>
 </div>
 <div class="paragraph">
-<p>On Linux/OSX you can run <code>&lt;idecommand&gt; `jbang edit quarkusapp.java`</code>.</p>
+<p>On Linux/macOS you can run <code>&lt;idecommand&gt; `jbang edit quarkusapp.java`</code>.</p>
 </div>
 <div class="paragraph">
 <p>If you add dependencies while editing you can get jbang to automatically refresh
@@ -326,7 +326,7 @@ the IDE project using <code>jbang edit --live=&lt;idecommand&gt; quarkusapp.java
 <div class="sect2">
 <h3 id="the-jax-rs-resources"><a class="anchor" href="#the-jax-rs-resources"></a>The JAX-RS resources</h3>
 <div class="paragraph">
-<p>Now let us replace the class with one that uses Quarkus features.</p>
+<p>Now let us replace the class with one that uses Quarkus features:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -362,7 +362,7 @@ public class quarkusapp {
 <td class="content">
 <div class="title">Why is the <code>main</code> method there ?</div>
 <div class="paragraph">
-<p>A <code>main</code> method is currently needed for the <code>jbang</code> integration to work - will be possible to remove in the future.</p>
+<p>A <code>main</code> method is currently needed for the <code>jbang</code> integration to work - we might remove this requirement in the future.</p>
 </div>
 </td>
 </tr>
@@ -375,7 +375,7 @@ public class quarkusapp {
 <h2 id="running-the-application"><a class="anchor" href="#running-the-application"></a>Running the application</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Now when youn run the application you will see Quarkus start up.</p>
+<p>Now when you run the application you will see Quarkus start up.</p>
 </div>
 <div class="paragraph">
 <p>Use: <code>jbang quarkusapp.java</code>:</p>
@@ -404,7 +404,7 @@ __  ____  __  _____   ___  __ ____  ______
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">$ curl -w "\n" http://localhost:8080/hello
+<pre class="highlightjs highlight"><code data-lang="shell" class="language-shell hljs">$ curl -w "\n" http://localhost:8080/hello
 hello</code></pre>
 </div>
 </div>
@@ -436,7 +436,7 @@ hello</code></pre>
 <div class="title">Why is <code>quarkus-resteasy</code> not resolved ?</div>
 <div class="paragraph">
 <p>In this second run you should not see a line saying it is resolving <code>quarkus-resteasy</code> as jbang caches the dependency resolution between runs.
-If you want to clear the caches to force resolution use <code>jbang cache clear</code></p>
+If you want to clear the caches to force resolution use <code>jbang cache clear</code>.</p>
 </div>
 </td>
 </tr>
@@ -490,10 +490,10 @@ static public class GreetingService {
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>jbang currently does not currently support multiple source files</p>
+<p>jbang currently does not support multiple source files</p>
 </li>
 <li>
-<p>All Java frameworks relying on introspection have challenges using top level classes as they are not as visible as public classes; and in java there can only be one top level public class in a file.</p>
+<p>All Java frameworks relying on introspection have challenges using top level classes as they are not as visible as public classes; and in Java there can only be one top level public class in a file.</p>
 </li>
 </ol>
 </div>
@@ -561,7 +561,7 @@ hello null</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Now that is unexpected, why is it returning <code>hello null</code> and not <code>hello quarkus</code> ?</p>
+<p>Now that is unexpected, why is it returning <code>hello null</code> and not <code>hello quarkus</code>?</p>
 </div>
 <div class="paragraph">
 <p>The reason is that JAX-RS <code>@PathParam</code> relies on the <code>-parameters</code> compiler flag to be set to be able to map <code>{name}</code> to the <code>name</code> parameter.</p>
@@ -609,7 +609,7 @@ more traditonal Quarkus debug port you can use <code>jbang --debug=5005 quarkusa
 </div>
 </div>
 <div class="paragraph">
-<p>To get it to work you need to add a java option to ensure the logging is initialized properly, i.e.</p>
+<p>To get it to work you need to add a Java option to ensure the logging is initialized properly, i.e.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -625,10 +625,10 @@ more traditonal Quarkus debug port you can use <code>jbang --debug=5005 quarkusa
 <h2 id="configuring-application"><a class="anchor" href="#configuring-application"></a>Configuring Application</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can use <code>//Q:CONFIG &lt;property&gt;=&lt;value&gt;</code> to setup static configuration for your application.</p>
+<p>You can use <code>//Q:CONFIG &lt;property&gt;=&lt;value&gt;</code> to set up static configuration for your application.</p>
 </div>
 <div class="paragraph">
-<p>i.e. if you wanted to add the <code>smallrye-openapi</code> and <code>swagger-ui</code> and have the swagger-ui always show up you would add the following:</p>
+<p>I.e. if you wanted to add the <code>smallrye-openapi</code> and <code>swagger-ui</code> extensions and have the Swagger UI always show up you would add the following:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -646,7 +646,7 @@ more traditonal Quarkus debug port you can use <code>jbang --debug=5005 quarkusa
 <h2 id="running-as-a-native-application"><a class="anchor" href="#running-as-a-native-application"></a>Running as a native application</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you have <code>native-image</code> binary installed and GRAALVM_HOME set you can get native binary built and run using <code>jbang --native quarkusapp.java</code>:</p>
+<p>If you have the <code>native-image</code> binary installed and <code>GRAALVM_HOME</code> set, you can get the native executable built and run using <code>jbang --native quarkusapp.java</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -694,7 +694,7 @@ __  ____  __  _____   ___  __ ____  ______
 <div class="sect2">
 <h3 id="conclusion"><a class="anchor" href="#conclusion"></a>Conclusion</h3>
 <div class="paragraph">
-<p>If you want to get started with Quarkus or write something quickly, Quarkus Scripting with jbang lets you do that. No Maven, no Gradle - just a java file. In this guide we outlined the very basics on using Quarkus with jbang; if you want to learn more about what jbang can do go see <a href="https://jbang.dev" class="bare">https://jbang.dev</a>.</p>
+<p>If you want to get started with Quarkus or write something quickly, Quarkus Scripting with jbang lets you do that. No Maven, no Gradle - just a Java file. In this guide we outlined the very basics on using Quarkus with jbang; if you want to learn more about what jbang can do go see <a href="https://jbang.dev" class="bare">https://jbang.dev</a>.</p>
 </div>
 </div>
 </div>
