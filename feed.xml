@@ -5,7 +5,21 @@
         <title>Quarkus</title>
         <link>https://quarkus.io</link>
         <description>Quarkus: Supersonic Subatomic Java</description>
-        <lastBuildDate>Wed, 16 Sep 2020 12:51:51 +0000</lastBuildDate>
+        <lastBuildDate>Thu, 17 Sep 2020 09:04:07 +0000</lastBuildDate>
+        
+        <item>
+            <title>Quarkus Tools for IntelliJ 1.1.0 released!</title>
+            <link>
+                https://quarkus.io/blog/intellij-quarkus-tools-1.1.0/
+            </link>
+            <description>
+                We are very pleased to announce the 1.1.0 release of Quarkus Tools for IntelliJ. This release brings support for YAML configuration files and bug fixes. application.yaml support Code completion (Ctrl + ENTER) Property documentation Select a property and press Ctrl+Q Syntax validation Wrong property key names or values are reported...
+            </description>
+            <pubDate>Thu, 17 Sep 2020 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/intellij-quarkus-tools-1.1.0/
+            </guid>
+        </item>
         
         <item>
             <title>Quarkus 1.8 released - Multiple Persistence Units, Micrometer, jbang, GraalVM 20.2</title>
@@ -130,20 +144,6 @@
             <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
             <guid>
                 https://quarkus.io/blog/quarkus-1-7-1-final-released/
-            </guid>
-        </item>
-        
-        <item>
-            <title>Free Quarkus Sessions at Quarkus Day by Red Hat</title>
-            <link>
-                https://quarkus.io/blog/quarkus-day-2020/
-            </link>
-            <description>
-                TUESDAY &amp; WEDNESDAY • SEPTEMBER 9 &amp;10 • 9.45 CEST Quarkus Day by Red Hat is a two-day event dedicated to developers and developer teams that want to be part of the future of cloud native development. At the event you will meet engineers and community members from the Quarkus...
-            </description>
-            <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
-            <guid>
-                https://quarkus.io/blog/quarkus-day-2020/
             </guid>
         </item>
         
