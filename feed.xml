@@ -5,7 +5,21 @@
         <title>Quarkus</title>
         <link>https://quarkus.io</link>
         <description>Quarkus: Supersonic Subatomic Java</description>
-        <lastBuildDate>Fri, 18 Sep 2020 11:07:20 +0000</lastBuildDate>
+        <lastBuildDate>Fri, 18 Sep 2020 13:01:30 +0000</lastBuildDate>
+        
+        <item>
+            <title>Quarkus 1.8.1.Final released - Bugfixes, RESTEasy Multipart extension</title>
+            <link>
+                https://quarkus.io/blog/quarkus-1-8-1-final-released/
+            </link>
+            <description>
+                Today, we released Quarkus 1.8.1.Final with some bugfixes and documentation improvements. We also introduced a new RESTEasy Multipart extension to fix an recurring encoding issues with multipart. It is a safe upgrade for everyone using 1.8.0.Final. What&#8217;s new? This release is a maintenance release that fixes various bugs found in...
+            </description>
+            <pubDate>Fri, 18 Sep 2020 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/quarkus-1-8-1-final-released/
+            </guid>
+        </item>
         
         <item>
             <title>Quarkus Tools for IntelliJ 1.1.0 released!</title>
@@ -130,20 +144,6 @@
             <pubDate>Sat, 29 Aug 2020 00:00:00 +0000</pubDate>
             <guid>
                 https://quarkus.io/blog/quarkus-hackathon-winners-announced/
-            </guid>
-        </item>
-        
-        <item>
-            <title>Quarkus 1.7.1.Final released - Bugfixes</title>
-            <link>
-                https://quarkus.io/blog/quarkus-1-7-1-final-released/
-            </link>
-            <description>
-                Today, we released Quarkus 1.7.1.Final with some bugfixes and documentation improvements. It is a safe upgrade for everyone using 1.7.0.Final. What&#8217;s new? This release is a maintenance release that fixes various bugs found in 1.7.0.Final and provides some documentation updates. Thanks to our contributors, we also made numerous improvements to...
-            </description>
-            <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
-            <guid>
-                https://quarkus.io/blog/quarkus-1-7-1-final-released/
             </guid>
         </item>
         
