@@ -103,7 +103,7 @@
 <li><a href="#deploying-verticles">Deploying verticles</a></li>
 <li><a href="#listening-to-a-unix-domain-socket">Listening to a Unix Domain Socket</a></li>
 <li><a href="#read-only-deployment-environments">Read only deployment environments</a></li>
-<li><a href="#running-behind-a-reverse-proxy">Running behind a reverse proxy</a></li>
+<li><a href="#reverse-proxy">Running behind a reverse proxy</a></li>
 <li><a href="#going-further">Going further</a></li>
 </ul></div>
     <div>
@@ -1028,7 +1028,7 @@ on <code>application.properties</code>.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="running-behind-a-reverse-proxy"><a class="anchor" href="#running-behind-a-reverse-proxy"></a>Running behind a reverse proxy</h2>
+<h2 id="reverse-proxy"><a class="anchor" href="#reverse-proxy"></a>Running behind a reverse proxy</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Quarkus could be accessed through proxies that additionally generate headers (e.g. <code>X-Forwarded-Host</code>) to keep
@@ -1062,7 +1062,7 @@ Consider activate it only when running behind a reverse proxy.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">quarkus.http.allow-forwarded=true</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">quarkus.http.proxy.allow-forwarded=true</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1070,14 +1070,13 @@ Consider activate it only when running behind a reverse proxy.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">quarkus.http.proxy-address-forwarding=true
+<pre class="highlightjs highlight"><code class="language-none hljs">quarkus.http.proxy.proxy-address-forwarding=true
 quarkus.http.proxy.enable-forwarded-host=true
 quarkus.http.proxy.enable-forwarded-prefix=true</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Both configurations related with standard and non-standard headers can be combine.
-In this case, the <code>Forwarded</code> header will have precedence in presence of both set of headers.</p>
+<p>Both configurations related to standard and non-standard headers can be combined, although the standard headers configuration will have precedence.</p>
 </div>
 <div class="paragraph">
 <p>Supported forwarding address headers are:</p>

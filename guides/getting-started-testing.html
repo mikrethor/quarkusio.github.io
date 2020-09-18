@@ -760,10 +760,12 @@ that need a specific profile into their own package, and then run tests alphabet
 <pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">package org.acme.getting.started.testing;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import io.quarkus.test.junit.QuarkusTestProfile;
+import io.quarkus.test.junit.QuarkusTestProfile.TestResourceEntry;
 
 public class MockGreetingProfile implements QuarkusTestProfile {
 
@@ -782,6 +784,11 @@ public class MockGreetingProfile implements QuarkusTestProfile {
     public String getConfigProfile() { <i class="conum" data-value="3"></i><b>(3)</b>
         return "test";
     }
+
+    @Override
+    public List&lt;TestResourceEntry&gt; testResources() { <i class="conum" data-value="4"></i><b>(4)</b>
+        return Collections.singletonList(new TestResourceEntry(CustomWireMockServerManager.class));
+    }
 }</code></pre>
 </div>
 </div>
@@ -798,6 +805,12 @@ public class MockGreetingProfile implements QuarkusTestProfile {
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
 <td>This can be used to change the config profile. As this default is <code>test</code> this does nothing, but is included for completeness.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>This method allows us to apply <strong>additional</strong> <code>QuarkusTestResourceLifecycleManager</code> classes, specific for this profile only. If this
+method is not overridden, then only the <code>QuarkusTestResourceLifecycleManager</code> classes enabled via the <code>@QuarkusTestResource</code> class
+annotation will be used for the tests using this profile (which is the same behavior as tests that don&#8217;t use a profile at all).</td>
 </tr>
 </table>
 </div>

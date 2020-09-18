@@ -97,6 +97,7 @@
 <li><a href="#http-filters-and-interceptors">HTTP filters and interceptors</a></li>
 <li><a href="#cors-filter">CORS filter</a></li>
 <li><a href="#gzip-support">GZip Support</a></li>
+<li><a href="#multipart-support">Multipart Support</a></li>
 <li><a href="#servlet-compatibility">Servlet compatibility</a></li>
 <li><a href="#whats-different-from-jakarta-ee-development">What&#8217;s Different from Jakarta EE Development</a>
 <ul class="sectlevel2">
@@ -814,6 +815,69 @@ This configuration option would recognize strings in this format (shown as a reg
 </div>
 </div>
 <div class="sect1">
+<h2 id="multipart-support"><a class="anchor" href="#multipart-support"></a>Multipart Support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>RESTEasy supports multipart via the <a href="https://docs.jboss.org/resteasy/docs/4.5.6.Final/userguide/html/Multipart.html">RESTEasy Multipart Provider</a>.</p>
+</div>
+<div class="paragraph">
+<p>Quarkus provides an extension called <code>quarkus-resteasy-multipart</code> to make things easier for you.</p>
+</div>
+<div class="paragraph">
+<p>This extension slightly differs from the RESTEasy default behavior as the default charset (if none is specified in your request) is UTF-8 rather than US-ASCII.</p>
+</div>
+<div class="paragraph">
+<p>You can configure this behavior with the following configuration properties:</p>
+</div>
+<div class="paragraph configuration-legend">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> Configuration property fixed at build time - All other configuration properties are overridable at runtime</p>
+</div>
+<table class="tableblock frame-all grid-all stretch configuration-reference searchable">
+<colgroup>
+<col style="width: 80%;">
+<col style="width: 10%;">
+<col style="width: 10%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-resteasy-multipart_configuration"></a><a href="#quarkus-resteasy-multipart_configuration">Configuration property</a></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-resteasy-multipart_quarkus.resteasy.multipart.input-part.default-charset"></a><code><a href="#quarkus-resteasy-multipart_quarkus.resteasy.multipart.input-part.default-charset">quarkus.resteasy.multipart.input-part.default-charset</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Default charset.
+ Note that the default value is UTF-8 which is different from RESTEasy&#8217;s default value US-ASCII.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="https://docs.oracle.com/javase/8/docs/api/java/nio/charset/Charset.html">Charset</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>UTF-8</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-resteasy-multipart_quarkus.resteasy.multipart.input-part.default-content-type"></a><code><a href="#quarkus-resteasy-multipart_quarkus.resteasy.multipart.input-part.default-content-type">quarkus.resteasy.multipart.input-part.default-content-type</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The default content-type.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>text/plain</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
 <h2 id="servlet-compatibility"><a class="anchor" href="#servlet-compatibility"></a>Servlet compatibility</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -822,9 +886,9 @@ This configuration option would recognize strings in this format (shown as a reg
 <div class="paragraph">
 <p>As a result, certain classes, such as <code>HttpServletRequest</code> are not always available for injection. Most use-cases for this particular
 class are covered by JAX-RS equivalents, except for getting the remote client&#8217;s IP. RESTEasy comes with a replacement API which you can inject:
-<a href="https://docs.jboss.org/resteasy/docs/4.4.2.Final/javadocs/org/jboss/resteasy/spi/HttpRequest.html"><code>HttpRequest</code></a>, which has the methods
-<a href="https://docs.jboss.org/resteasy/docs/4.4.2.Final/javadocs/org/jboss/resteasy/spi/HttpRequest.html#getRemoteAddress--"><code>getRemoteAddress()</code></a>
-and <a href="https://docs.jboss.org/resteasy/docs/4.4.2.Final/javadocs/org/jboss/resteasy/spi/HttpRequest.html#getRemoteHost--"><code>getRemoteHost()</code></a>
+<a href="https://docs.jboss.org/resteasy/docs/4.5.6.Final/javadocs/org/jboss/resteasy/spi/HttpRequest.html"><code>HttpRequest</code></a>, which has the methods
+<a href="https://docs.jboss.org/resteasy/docs/4.5.6.Final/javadocs/org/jboss/resteasy/spi/HttpRequest.html#getRemoteAddress--"><code>getRemoteAddress()</code></a>
+and <a href="https://docs.jboss.org/resteasy/docs/4.5.6.Final/javadocs/org/jboss/resteasy/spi/HttpRequest.html#getRemoteHost--"><code>getRemoteHost()</code></a>
 to solve this problem.</p>
 </div>
 </div>

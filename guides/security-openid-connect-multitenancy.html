@@ -300,6 +300,35 @@ public class CustomTenantResolver implements TenantResolver {
 <div class="paragraph">
 <p>From the implementation above, tenants are resolved from the request path so that in case no tenant could be inferred, <code>null</code> is returned to indicate that the default tenant configuration should be used.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+===
+If you also use <a href="hibernate-orm#multitenancy">Hibernate ORM multitenancy</a> and both OIDC and Hibernate ORM tenant IDs are the same and must be extracted from the Vert.x <code>RoutingContext</code> then you can pass the tenant id from the OIDC Tenant Resolver to the Hibernate ORM Tenant Resolver as a <code>RoutingContext</code> attribute, for example:
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public class CustomTenantResolver implements TenantResolver {
+
+    @Override
+    public String resolve(RoutingContext context) {
+        String tenantId = extractTenantId(context);
+        context.put("tenantId", tenantId);
+        return tenantId;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>===</p>
+</div>
 </div>
 </div>
 <div class="sect1">

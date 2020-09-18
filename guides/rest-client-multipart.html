@@ -100,7 +100,7 @@
 </div>
 <div class="paragraph">
 <p>This guide explains how to use the MicroProfile REST Client with Multipart in order to interact with REST APIs
-requiring multipart/form-data content-type with very little effort.</p>
+requiring <code>multipart/form-data</code> content-type with very little effort.</p>
 </div>
 </div>
 </div>
@@ -156,23 +156,13 @@ However, you can go right to the completed example.</p>
     -DprojectArtifactId=rest-client-multipart-quickstart \
     -DclassName="org.acme.rest.client.multipart.MultipartClientResource" \
     -Dpath="/client" \
-    -Dextensions="rest-client, resteasy"
+    -Dextensions="rest-client, resteasy, resteasy-multipart"
 cd rest-client-multipart-quickstart</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This command generates the Maven project with a REST endpoint and imports the <code>rest-client</code> and <code>resteasy</code> extensions.</p>
-</div>
-<div class="paragraph">
-<p>Then, we&#8217;ll add the following dependency to support <code>multipart/form-data</code> requests:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
-    &lt;groupId&gt;org.jboss.resteasy&lt;/groupId&gt;
-    &lt;artifactId&gt;resteasy-multipart-provider&lt;/artifactId&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
+<p>This command generates the Maven project with a REST endpoint and imports the <code>rest-client</code> and <code>resteasy</code> extensions.
+It also adds the <code>resteasy-multipart</code> extension to support <code>multipart/form-data</code> requests.</p>
 </div>
 </div>
 </div>
@@ -180,7 +170,7 @@ cd rest-client-multipart-quickstart</code></pre>
 <h2 id="setting-up-the-model"><a class="anchor" href="#setting-up-the-model"></a>Setting up the model</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this guide we will be demonstrating how to invoke a REST service accepting multipart/form-data input.
+<p>In this guide we will be demonstrating how to invoke a REST service accepting <code>multipart/form-data</code> input.
 We are assuming the payload is well-known before the request is sent, so we can model as a POJO.</p>
 </div>
 <div class="admonitionblock note">
@@ -191,7 +181,7 @@ We are assuming the payload is well-known before the request is sent, so we can 
 </td>
 <td class="content">
 <div class="paragraph">
-<p>If the payload is unknown, you can also use the RESTEasy custom API instead. If that&#8217;s the case, see the RESTEasy Multipart Providers link in the end of the guide.</p>
+<p>If the payload is unknown, you can also use the RESTEasy custom API instead. If that&#8217;s the case, see the RESTEasy Multipart Providers link at the end of the guide.</p>
 </div>
 </td>
 </tr>
@@ -516,10 +506,10 @@ You can also generate the native executable with <code>./mvnw clean package -Pna
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://download.eclipse.org/microprofile/microprofile-rest-client-1.2.1/microprofile-rest-client-1.2.1.html">MicroProfile Rest Client specification</a></p>
+<p><a href="https://download.eclipse.org/microprofile/microprofile-rest-client-1.4.1/microprofile-rest-client-1.4.1.html">MicroProfile Rest Client specification</a></p>
 </li>
 <li>
-<p><a href="https://docs.jboss.org/resteasy/docs/4.3.1.Final/userguide/html/Multipart.html">RESTEasy Multipart Providers</a></p>
+<p><a href="https://docs.jboss.org/resteasy/docs/4.5.6.Final/userguide/html/Multipart.html">RESTEasy Multipart Provider</a></p>
 </li>
 </ul>
 </div>

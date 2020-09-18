@@ -2476,6 +2476,39 @@ public class CustomTenantResolver implements TenantResolver {
 </tr>
 </table>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you also use <a href="security-openid-connect-multitenancy">OIDC multitenancy</a> and both OIDC and Hibernate ORM tenant IDs are the same and must be extracted from the Vert.x <code>RoutingContext</code> then you can pass the tenant id from the OIDC Tenant Resolver to the Hibernate ORM Tenant Resolver as a <code>RoutingContext</code> attribute, for example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">import io.quarkus.hibernate.orm.runtime.tenant.TenantResolver;
+import io.vertx.ext.web.RoutingContext;
+
+@RequestScoped
+public class CustomTenantResolver implements TenantResolver {
+
+    @Inject
+    RoutingContext context;
+    ...
+    @Override
+    public String resolveTenantId() {
+        // OIDC TenantResolver has already calculated the tenant id and saved it as a RoutingContext `tenantId` attribute:
+        return context.get("tenantId");
+    }
+}</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="configuring-the-application"><a class="anchor" href="#configuring-the-application"></a>Configuring the application</h3>

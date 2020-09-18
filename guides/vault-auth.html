@@ -561,7 +561,10 @@ such that they will be accessible from the pod):</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">quarkus.vault.url=http://&lt;host&gt;:8200
-quarkus.datasource.url = jdbc:postgresql://&lt;host&gt;:5432/mydatabase
+quarkus.datasource.db-kind=postgresql
+quarkus.datasource.username=&lt;your username&gt;
+quarkus.datasource.password=&lt;your password&gt;
+quarkus.datasource.jdbc.url = jdbc:postgresql://&lt;host&gt;:5432/mydatabase
 
 quarkus.vault.authentication.kubernetes.role=vault-quickstart-role
 

@@ -91,6 +91,7 @@
 <li><a href="#review-the-generated-metrics">Review the generated metrics</a></li>
 </ul>
 </li>
+<li><a href="#support-for-the-microprofile-metrics-api">Support for the MicroProfile Metrics API</a></li>
 <li><a href="#configuration-reference">Configuration Reference</a></li>
 </ul></div>
     <div>
@@ -189,7 +190,7 @@ to your project by running the following command in your project base directory:
 </div>
 </div>
 <div class="paragraph">
-<p>You should also add a micrometer dependency for the registry of your choosing, e.g.</p>
+<p>You should also add a dependency for the registry of your choosing, e.g.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -206,7 +207,7 @@ to your project by running the following command in your project base directory:
 <div class="sectionbody">
 <div class="paragraph">
 <p>The application consists of a single class that implements an algorithm for checking whether a number is prime.
-This algorithm is exposed over a REST interface. With the micrometer extension enabled, metrics for all http
+This algorithm is exposed over a REST interface. With the Micrometer extension enabled, metrics for all http
 server requests are collected automatically.</p>
 </div>
 <div class="paragraph">
@@ -337,7 +338,7 @@ If you want, try some more calls with numbers of your choice.</p>
 </div>
 <div class="paragraph">
 <p>The application above has only one custom gauge that measures the time
-spent determining whether or not a number is prime. The micrometer extension
+spent determining whether or not a number is prime. The Micrometer extension
 enables additional system, jvm, and http metrics. A subset of the collected metrics
 are shown below.</p>
 </div>
@@ -423,6 +424,39 @@ jvm_memory_committed_bytes{area="nonheap",id="CodeHeap 'non-profiled nmethods'",
 <div class="paragraph">
 <p>Note that metrics appear lazily, you often won&#8217;t see any data for your endpoint until
 something tries to access it, etc.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="support-for-the-microprofile-metrics-api"><a class="anchor" href="#support-for-the-microprofile-metrics-api"></a>Support for the MicroProfile Metrics API</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you use the MicroProfile Metrics API in your application, the Micrometer extension will create an adaptive
+layer to map those metrics into the Micrometer registry. Note that naming conventions between the two
+systems will change, but you can use MeterFilters to remap names or tags to what your dashboards require.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Produces
+@Singleton
+public MeterFilter renameApplicationMeters() {
+    final String targetMetric = PrimeResource.class.getName() + ".highestPrimeNumberSoFar";
+
+    return MeterFilter() {
+        @Override
+        public Meter.Id map(Meter.Id id) {
+            // rename the specified metric (remove package), and drop the scope tag
+            // you could also use this to prepend a scope tag (application, base, vendor, if present) to the metric name
+            if (id.getName().equals(targetMetric)) {
+                List&lt;Tag&gt; tags = id.getTags().stream().filter(x -&gt; !"scope".equals(x.getKey()))
+                        .collect(Collectors.toList());
+                return id.withName("highestPrimeNumberSoFar").replaceTags(tags);
+            }
+            return id;
+        }
+    };
+}</code></pre>
 </div>
 </div>
 </div>
