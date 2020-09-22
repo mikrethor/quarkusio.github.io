@@ -5,7 +5,21 @@
         <title>Quarkus</title>
         <link>https://quarkus.io</link>
         <description>Quarkus: Supersonic Subatomic Java</description>
-        <lastBuildDate>Mon, 21 Sep 2020 10:41:01 +0000</lastBuildDate>
+        <lastBuildDate>Tue, 22 Sep 2020 10:11:26 +0000</lastBuildDate>
+        
+        <item>
+            <title>How to Use Kafka, Schema Registry and Avro with Quarkus</title>
+            <link>
+                https://quarkus.io/blog/kafka-avro/
+            </link>
+            <description>
+                In the Kafka world, Apache Avro is by far the most used serialization protocol. Avro is a data serialization system. Combined with Kafka, it provides schema-based, robust, and fast binary serialization. In this blog post, we will see how you can use Avro with a schema registry in a Quarkus...
+            </description>
+            <pubDate>Tue, 22 Sep 2020 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/kafka-avro/
+            </guid>
+        </item>
         
         <item>
             <title>Quarkus 1.8.1.Final released - Bugfixes, RESTEasy Multipart extension</title>
@@ -130,20 +144,6 @@
             <pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate>
             <guid>
                 https://quarkus.io/blog/mutiny-redis/
-            </guid>
-        </item>
-        
-        <item>
-            <title>Quarkus Hackathon Winners</title>
-            <link>
-                https://quarkus.io/blog/quarkus-hackathon-winners-announced/
-            </link>
-            <description>
-                Congratulations to the Winners The winners of the Supersonic, Subatomic Java Hackathon were announced on Friday during a “live judging” session. The submissions greatly exceeded expectations and the process of selecting the winners was difficult. Best Overall ($10,000) Slurpanize Best Serverless ($5,000) BrightAct Against Domestic Violence Best Kubernetes-native ($5,000) Slurpanize...
-            </description>
-            <pubDate>Sat, 29 Aug 2020 00:00:00 +0000</pubDate>
-            <guid>
-                https://quarkus.io/blog/quarkus-hackathon-winners-announced/
             </guid>
         </item>
         
