@@ -149,10 +149,11 @@
 </li>
 </ol>
 </div>
-<div class="sect2">
-<h3 id="reporting-the-result"><a class="anchor" href="#reporting-the-result"></a>Reporting the result</h3>
+<div class="sect1">
+<h2 id="reporting-the-result"><a class="anchor" href="#reporting-the-result"></a>Reporting the result</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Please [open a bug](<a href="https://github.com/quarkusio/quarkus/issues/new?assignees=&amp;labels=kind%2Fbug&amp;template=bug_report.md&amp;title=%28jep374%29" class="bare">https://github.com/quarkusio/quarkus/issues/new?assignees=&amp;labels=kind%2Fbug&amp;template=bug_report.md&amp;title=%28jep374%29</a>) with <code>[jep374]</code> in the title + your project. i.e. <code>[jep374] results for acme project crazy panda</code> containing the following information per run in the description:</p>
+<p>Please <a href="https://github.com/quarkusio/quarkus/issues/new?assignees=&amp;labels=kind%2Fbug&amp;template=bug_report.md&amp;title=%28jep374%29">open a bug</a> with <code>[jep374]</code> in the title + your project. i.e. <code>[jep374] results for acme project crazy panda</code> containing the following information per run in the description:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -165,6 +166,7 @@ performance test result: without biased locking</code></pre>
 </div>
 <div class="paragraph">
 <p>This will help us immensly. Thank you!</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -199,14 +201,12 @@ locate the end of the valid buffer data but that rarely happens. So, the unbiase
 <p>A similar case occurs with class ByteOutput Stream. Method putByte is synchronized. So writing a single byte involves a lock and unlock. n.b. method putInt calls putByte 4 times, requiring 4 locks and unlocks. Method putLong calls it 8 times!</p>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="why-is-biased-locking-being-removed"><a class="anchor" href="#why-is-biased-locking-being-removed"></a>Why is biased locking being removed?</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="why-is-biased-locking-being-removed"><a class="anchor" href="#why-is-biased-locking-being-removed"></a>Why is biased locking being removed?</h3>
 <div class="paragraph">
 <p>The implementation of biased locking adds a great deal of complexity to the JVM and is understood by only a small subset of the most experienced engineers. The cost of maintaining it and designing around it is significantly slowing down progress on new features. It has been a long term goal to remove it if at all possible. Some OpenJDK contributors wanted to remove it
 right away in jdk15 others argue for a slower deprecation route in order to check that we could really dispense with it.</p>
+</div>
 </div>
 </div>
 </div>
