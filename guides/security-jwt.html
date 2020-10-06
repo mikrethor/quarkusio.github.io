@@ -507,7 +507,7 @@ Not authorized</code></pre>
 <div class="title">application.properties for TokenSecuredResource</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">mp.jwt.verify.publickey.location=META-INF/resources/publicKey.pem <i class="conum" data-value="1"></i><b>(1)</b>
-mp.jwt.verify.issuer=https://quarkus.io/using-jwt-rbac <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+mp.jwt.verify.issuer=https://example.com/issuer <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -518,7 +518,7 @@ mp.jwt.verify.issuer=https://quarkus.io/using-jwt-rbac <i class="conum" data-val
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>We are setting the issuer to the URL string <code><a href="https://quarkus.io/using-jwt-rbac" class="bare">https://quarkus.io/using-jwt-rbac</a></code>.</td>
+<td>We are setting the issuer to the URL string <code><a href="https://example.com/issuer" class="bare">https://example.com/issuer</a></code>.</td>
 </tr>
 </table>
 </div>
@@ -586,7 +586,7 @@ public class GenerateToken {
      */
     public static void main(String[] args) {
         String token =
-           Jwt.issuer("https://quarkus.io/using-jwt-rbac") <i class="conum" data-value="1"></i><b>(1)</b>
+           Jwt.issuer("https://example.com/issuer") <i class="conum" data-value="1"></i><b>(1)</b>
              .upn("jdoe@quarkus.io") <i class="conum" data-value="2"></i><b>(2)</b>
              .groups(new HashSet&lt;&gt;(Arrays.asList("User", "Admin"))) <i class="conum" data-value="3"></i><b>(3)</b>
              .claim(Claims.birthdate.name(), "2001-07-13") <i class="conum" data-value="4"></i><b>(4)</b>
@@ -619,7 +619,7 @@ in order for the token to be accepted as valid.</td>
 </table>
 </div>
 <div class="paragraph">
-<p>Note for this code to work we need the content of the RSA private key that corresponds to the public key we have in the TokenSecuredResource application. Take the following PEM content and place it into <code>security-jwt-quickstart/src/main/resources/META-INF/resources/privateKey.pem</code>:</p>
+<p>Note for this code to work we need the content of the RSA private key that corresponds to the public key we have in the TokenSecuredResource application. Take the following PEM content and place it into <code>security-jwt-quickstart/src/test/resources/privateKey.pem</code>:</p>
 </div>
 <div class="listingblock">
 <div class="title">RSA Private Key PEM Content</div>

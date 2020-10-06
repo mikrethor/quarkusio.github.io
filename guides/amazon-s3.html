@@ -175,11 +175,14 @@ It&#8217;s a major rewrite of the 1.x code base that offers two programming mode
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="shell" class="language-shell hljs">docker run -it --publish 8008:4572 -e SERVICES=s3 -e START_WEB=0 localstack/localstack</code></pre>
+<pre class="highlightjs highlight"><code data-lang="shell" class="language-shell hljs">docker run -it --publish 8008:4566 -e SERVICES=s3 -e START_WEB=0 localstack/localstack:0.11.5</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>This starts a S3 instance that is accessible on port <code>8008</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Note</strong>: Versions of localstack newer than v0.11.5 require port <code>4566</code> instead of port <code>4572</code>. See this <a href="https://github.com/localstack/localstack/issues/2983">GitHub issue</a> for details on this change</p>
 </div>
 <div class="paragraph">
 <p>Create an AWS profile for your local instance using AWS CLI:</p>

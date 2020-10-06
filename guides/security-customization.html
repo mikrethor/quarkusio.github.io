@@ -155,11 +155,6 @@ import java.util.function.Supplier;
 public class RolesAugmentor implements SecurityIdentityAugmentor {
 
     @Override
-    public int priority() {
-        return 0;
-    }
-
-    @Override
     public Uni&lt;SecurityIdentity&gt; augment(SecurityIdentity identity, AuthenticationRequestContext context) {
         return Uni.createFrom().item(build(identity));
 
@@ -203,11 +198,6 @@ import java.util.Set;
 public class RolesAugmentor implements SecurityIdentityAugmentor {
 
     @Override
-    public int priority() {
-        return 0;
-    }
-
-    @Override
     public Uni&lt;SecurityIdentity&gt; augment(SecurityIdentity identity, AuthenticationRequestContext context) {
         return Uni.createFrom().item(build(identity));
     }
@@ -237,6 +227,21 @@ public class RolesAugmentor implements SecurityIdentityAugmentor {
     }
 }</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+===
+If more than one custom <code>SecurityIdentityAugmentor</code> is registered then they will be considered equal candidates and invoked in random order.
+You can enforce the order by implementing a default <code>SecurityIdentityAugmentor#priority</code> method. Augmentors with higher priorities will be invoked first.
+===
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>

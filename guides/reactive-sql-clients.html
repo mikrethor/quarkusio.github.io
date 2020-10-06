@@ -591,7 +591,7 @@ public Uni&lt;Response&gt; getSingle(@PathParam Long id) {
 <div class="title">src/main/java/org/acme/vertx/Fruit.java</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public Uni&lt;Long&gt; save(PgPool client) {
-    return client.preparedQuery("INSERT INTO fruits (name) VALUES ($1) RETURNING (id)").execute(Tuple.of(name))
+    return client.preparedQuery("INSERT INTO fruits (name) VALUES ($1) RETURNING id").execute(Tuple.of(name))
             .onItem().transform(pgRowSet -&gt; pgRowSet.iterator().next().getLong("id"));
 }</code></pre>
 </div>
@@ -832,9 +832,9 @@ Instead of writing repetitive and complex (thus error-prone!) code, you can use 
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public static Uni&lt;Void&gt; insertTwoFruits(PgPool client, Fruit fruit1, Fruit fruit2) {
     return SqlClientHelper.inTransactionUni(client, tx -&gt; {
-        Uni&lt;RowSet&lt;Row&gt;&gt; insertOne = tx.preparedQuery("INSERT INTO fruits (name) VALUES ($1) RETURNING (id)")
+        Uni&lt;RowSet&lt;Row&gt;&gt; insertOne = tx.preparedQuery("INSERT INTO fruits (name) VALUES ($1) RETURNING id")
                 .execute(Tuple.of(fruit1.name));
-        Uni&lt;RowSet&lt;Row&gt;&gt; insertTwo = tx.preparedQuery("INSERT INTO fruits (name) VALUES ($1) RETURNING (id)")
+        Uni&lt;RowSet&lt;Row&gt;&gt; insertTwo = tx.preparedQuery("INSERT INTO fruits (name) VALUES ($1) RETURNING id")
                 .execute(Tuple.of(fruit2.name));
 
         return insertOne.and(insertTwo)
@@ -854,7 +854,7 @@ Instead of writing repetitive and complex (thus error-prone!) code, you can use 
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">return SqlClientHelper.inTransactionUni(client, tx -&gt; tx
 
-        .preparedQuery("INSERT INTO person (firstname,lastname) VALUES ($1,$2) RETURNING (id)")
+        .preparedQuery("INSERT INTO person (firstname,lastname) VALUES ($1,$2) RETURNING id")
                 .execute(Tuple.of(person.getFirstName(), person.getLastName()))
 
         .onItem().transformToUni(id -&gt; tx.preparedQuery("INSERT INTO addr (person_id,addrline1) VALUES ($1,$2)")
@@ -983,7 +983,7 @@ This step depends on the database type.</p>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Whether or not datasource metrics are published in case the smallrye-metrics extension is present.
+<p>Whether or not datasource metrics are published in case a metrics extension is present.
  This is a global setting and is not specific to a datasource.
  NOTE: This is different from the "jdbc.enable-metrics" property that needs to be set on the JDBC datasource level to enable collection of metrics for that datasource.</p>
 </div>

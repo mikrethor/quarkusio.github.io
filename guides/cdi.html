@@ -273,7 +273,7 @@ Intializers may accept multiple parameters and don&#8217;t have to follow the Ja
 <pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@ApplicationScoped
 public class Translator {
 
-    private final TranslatorHelper helper
+    private final TranslatorHelper helper;
 
     Translator(TranslatorHelper helper) { <i class="conum" data-value="1"></i><b>(1)</b>
        this.helper = helper;
@@ -603,7 +603,7 @@ No scope annotation is declared and so it&#8217;s defaulted to <code>@Dependent<
 <div class="paragraph">
 <p>There&#8217;s more about producers.
 You can declare qualifiers, inject dependencies into the producer methods parameters, etc.
-You can read more about producers for example in the <a href="https://docs.jboss.org/weld/reference/latest/en-US/html/beanscdi.html#_producer_methods" target="_blank" rel="noopener">Weld docs</a>.</p>
+You can read more about producers for example in the <a href="https://docs.jboss.org/weld/reference/latest/en-US/html_single/#_producer_methods" target="_blank" rel="noopener">Weld docs</a>.</p>
 </div>
 </div>
 </div>
@@ -682,9 +682,9 @@ public class LoggingInterceptor {
    Logger logger;
 
    @AroundInvoke <i class="conum" data-value="5"></i><b>(5)</b>
-   Objec logInvocation(InvocationContext context) {
+   Object logInvocation(InvocationContext context) {
       // ...log before
-      Objec ret = context.proceed(); <i class="conum" data-value="6"></i><b>(6)</b>
+      Object ret = context.proceed(); <i class="conum" data-value="6"></i><b>(6)</b>
       // ...log after
       return ret;
    }
@@ -751,7 +751,7 @@ The optional qualifiers act as topic selectors.</p>
 class ComplicatedService {
 
    @Inject
-   Event&lt;Task&gt; event; <i class="conum" data-value="1"></i><b>(1)</b>
+   Event&lt;TaskCompleted&gt; event; <i class="conum" data-value="1"></i><b>(1)</b>
 
    void doSomething() {
       // ...
@@ -793,7 +793,7 @@ class Logger {
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-For more info about events/observers visit <a href="https://docs.jboss.org/weld/reference/latest/en-US/html/events.html" target="_blank" rel="noopener">Weld docs</a>.
+For more info about events/observers visit <a href="https://docs.jboss.org/weld/reference/latest/en-US/html/#events" target="_blank" rel="noopener">Weld docs</a>.
 </td>
 </tr>
 </table>

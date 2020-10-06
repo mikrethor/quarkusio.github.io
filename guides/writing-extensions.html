@@ -3202,7 +3202,7 @@ Capabilities provided by core extensions should be listed in the <code>io.quarku
 <p>The CDI layer processes CDI beans that are either explicitly registered or that it discovers based on bean defining annotations as defined in <a href="http://docs.jboss.org/cdi/spec/2.0/cdi-spec.html#bean_defining_annotations">2.5.1. Bean defining annotations</a>. You can expand this set of annotations to include annotations your extension processes using a <code>BeanDefiningAnnotationBuildItem</code> as shown in this <code>TestProcessor#registerBeanDefinningAnnotations</code> example:</p>
 </div>
 <div class="listingblock">
-<div class="title">Register a Bean Definining Annotation</div>
+<div class="title">Register a Bean Defining Annotation</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">import javax.enterprise.context.ApplicationScoped;
 import org.jboss.jandex.DotName;
@@ -3587,7 +3587,7 @@ and shutdown. There are CDI events fired that components can observe are illustr
 <pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">import io.quarkus.runtime.ShutdownEvent;
 import io.quarkus.runtime.StartupEvent;
 
-puclic class SomeBean {
+public class SomeBean {
     /**
      * Called when the runtime has started
      * @param event
@@ -3614,7 +3614,7 @@ puclic class SomeBean {
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Observe a 'ShutdownEvent` to be notified when the runtime is going to shutdown.</td>
+<td>Observe a <code>ShutdownEvent</code> to be notified when the runtime is going to shutdown.</td>
 </tr>
 </table>
 </div>
@@ -3913,7 +3913,7 @@ public class DSAPublicKeyObjectSubstitution implements ObjectSubstitution&lt;DSA
 <p>An extension registers this substitution by producing an <code>ObjectSubstitutionBuildItem</code> as shown in this <code>TestProcessor#loadDSAPublicKey</code> fragment:</p>
 </div>
 <div class="listingblock">
-<div class="title">Registering an Object Subtitution</div>
+<div class="title">Registering an Object Substitution</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">    @BuildStep
     @Record(STATIC_INIT)

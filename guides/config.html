@@ -235,7 +235,7 @@ String message;</code></pre>
 </td>
 <td class="content">
 When injecting a configured value, you can use <code>@Inject @ConfigProperty</code> or just <code>@ConfigProperty</code>.
-The <code>@Inject</code> annotation is not necessary for members annotated with <code>@ConfigProperty</code>, a behavior which differs from <a href="https://microprofile.io/project/eclipse/microprofile-config">MicroProfile Config</a>
+The <code>@Inject</code> annotation is not necessary for members annotated with <code>@ConfigProperty</code>, a behavior which differs from <a href="https://microprofile.io/project/eclipse/microprofile-config">MicroProfile Config</a>.
 </td>
 </tr>
 </table>
@@ -515,7 +515,7 @@ Having simple public non-final fields is valid as well.</p>
 </div>
 <div class="paragraph">
 <p>Furthermore, the configuration classes support nested object configuration. Suppose there was a need to have an extra layer
-of greeting configuration named <code>hidden</code> that would contain a few fields. This could be achieved like so:</p>
+of greeting configuration named <code>content</code> that would contain a few fields. This could be achieved like so:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -525,9 +525,9 @@ public class GreetingConfiguration {
     public String message;
     public String suffix = "!";
     public Optional&lt;String&gt; name;
-    public HiddenConfig hidden; <i class="conum" data-value="1"></i><b>(1)</b>
+    public ContentConfig content; <i class="conum" data-value="1"></i><b>(1)</b>
 
-    public static class HiddenConfig {
+    public static class ContentConfig {
         public Integer prizeAmount;
         public List&lt;String&gt; recipients;
     }
@@ -549,8 +549,8 @@ public class GreetingConfiguration {
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">greeting.message = hello
 greeting.name = quarkus
-greeting.hidden.prize-amount=10
-greeting.hidden.recipients=Jane,John</code></pre>
+greeting.content.prize-amount=10
+greeting.content.recipients=Jane,John</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -671,7 +671,7 @@ therefore <code>quarkus.</code> should <strong>never</strong> be used as prefix 
 <div class="sect2">
 <h3 id="list-of-all-configuration-properties"><a class="anchor" href="#list-of-all-configuration-properties"></a>List of all configuration properties</h3>
 <div class="paragraph">
-<p>All the Quarkus configuration properties are <a href="all-config">documented and searcheable</a>.</p>
+<p>All the Quarkus configuration properties are <a href="all-config">documented and searchable</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1298,7 +1298,7 @@ For example, consider the two configuration properties <code>quarkus.http.cors</
 One property is the prefix of another, so it may not be immediately evident how to specify both keys in your YAML configuration.</p>
 </div>
 <div class="paragraph">
-<p>This is solved by using a null key (normally represented by <code>~</code>) for any YAML property which is a prefix of another one.  Here&#8217;s an example:</p>
+<p>This is solved by using a <code>null</code> key (normally represented by <code>~</code>) for any YAML property which is a prefix of another one.  Here&#8217;s an example:</p>
 </div>
 <div class="listingblock">
 <div class="title">An example YAML configuration resolving prefix-related key name conflicts</div>
@@ -1311,7 +1311,7 @@ One property is the prefix of another, so it may not be immediately evident how 
 </div>
 </div>
 <div class="paragraph">
-<p>In general, null YAML keys are not included in assembly of the configuration property name, allowing them to be used to
+<p>In general, <code>null</code> YAML keys are not included in assembly of the configuration property name, allowing them to be used to
 any level for disambiguating configuration keys.</p>
 </div>
 </div>

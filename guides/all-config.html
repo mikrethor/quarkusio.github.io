@@ -164,7 +164,7 @@
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Enable datasource metrics collection. If unspecified, collecting metrics will be enabled by default if the smallrye-metrics extension is active.</p>
+<p>Enable datasource metrics collection. If unspecified, collecting metrics will be enabled by default if a metrics extension is active.</p>
 </div>
 </div>
 </div></div></td>
@@ -428,7 +428,7 @@
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Enable datasource metrics collection. If unspecified, collecting metrics will be enabled by default if the smallrye-metrics extension is active.</p>
+<p>Enable datasource metrics collection. If unspecified, collecting metrics will be enabled by default if a metrics extension is active.</p>
 </div>
 </div>
 </div></div></td>
@@ -7202,6 +7202,20 @@ fail unless the resource or API&#8217;s policy has been configured to specifical
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-kafka-streams_quarkus.kafka-streams.sasl.mechanism"></a><code><a href="#quarkus-kafka-streams_quarkus.kafka-streams.sasl.mechanism">quarkus.kafka-streams.sasl.mechanism</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>SASL mechanism used for client connections</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a id="quarkus-kafka-streams_quarkus.kafka-streams.sasl.jaas-config"></a><code><a href="#quarkus-kafka-streams_quarkus.kafka-streams.sasl.jaas-config">quarkus.kafka-streams.sasl.jaas-config</a></code></p>
 </div>
 <div class="openblock description">
@@ -8299,6 +8313,165 @@ An unused bean:</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>true</code></p></td>
 </tr>
 <tr>
+<th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-container-image_quarkus-container-image-container-image"></a><a href="#quarkus-container-image_quarkus-container-image-container-image">Container Image</a></p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus.container-image.group"></a><code><a href="#quarkus-container-image_quarkus.container-image.group">quarkus.container-image.group</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The group the container image will be part of</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>${user.name}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus.container-image.name"></a><code><a href="#quarkus-container-image_quarkus.container-image.name">quarkus.container-image.name</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The name of the container image. If not set defaults to the application name</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>${quarkus.application.name:unset}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus.container-image.tag"></a><code><a href="#quarkus-container-image_quarkus.container-image.tag">quarkus.container-image.tag</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The tag of the container image. If not set defaults to the application version</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>${quarkus.application.version:latest}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus.container-image.additional-tags"></a><code><a href="#quarkus-container-image_quarkus.container-image.additional-tags">quarkus.container-image.additional-tags</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Additional tags of the container image.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">list of string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus.container-image.registry"></a><code><a href="#quarkus-container-image_quarkus.container-image.registry">quarkus.container-image.registry</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The container registry to use</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus.container-image.username"></a><code><a href="#quarkus-container-image_quarkus.container-image.username">quarkus.container-image.username</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The username to use to authenticate with the registry where the built image will be pushed</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus.container-image.password"></a><code><a href="#quarkus-container-image_quarkus.container-image.password">quarkus.container-image.password</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The password to use to authenticate with the registry where the built image will be pushed</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus.container-image.insecure"></a><code><a href="#quarkus-container-image_quarkus.container-image.insecure">quarkus.container-image.insecure</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Whether or not insecure registries are allowed</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus.container-image.build"></a><code><a href="#quarkus-container-image_quarkus.container-image.build">quarkus.container-image.build</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Whether or not a image build will be performed.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus.container-image.push"></a><code><a href="#quarkus-container-image_quarkus.container-image.push">quarkus.container-image.push</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Whether or not an image push will be performed.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-container-image_quarkus.container-image.builder"></a><code><a href="#quarkus-container-image_quarkus.container-image.builder">quarkus.container-image.builder</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>The name of the container image extension to use (e.g. docker, jib, s2i). The option will be used in case multiple extensions are present.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-container-image-docker_quarkus-container-image-docker-container-image-docker"></a><a href="#quarkus-container-image-docker_quarkus-container-image-docker-container-image-docker">Container Image Docker</a></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
@@ -8682,7 +8855,7 @@ An unused bean:</p>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Whether or not datasource metrics are published in case the smallrye-metrics extension is present.
+<p>Whether or not datasource metrics are published in case a metrics extension is present.
  This is a global setting and is not specific to a datasource.
  NOTE: This is different from the "jdbc.enable-metrics" property that needs to be set on the JDBC datasource level to enable collection of metrics for that datasource.</p>
 </div>
@@ -14491,7 +14664,7 @@ for more information.</p>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Whether or not metrics are published in case the smallrye-metrics extension is present.</p>
+<p>Whether or not metrics are published in case a metrics extension is present.</p>
 </div>
 </div>
 </div></div></td>
@@ -22267,7 +22440,7 @@ This configuration section is optional</p></th>
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>The special end-of-record delimiter to be used. By default, no delimiter is used.</p>
+<p>The special end-of-record delimiter to be used. By default, newline is used as delimiter.</p>
 </div>
 </div>
 </div></div></td>
@@ -23056,7 +23229,7 @@ Use this attribute to selectively disable publication of metrics in some environ
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Whether or not metrics are published in case the smallrye-metrics extension is present.</p>
+<p>Whether or not metrics are published in case a metrics extension is present.</p>
 </div>
 </div>
 </div></div></td>
@@ -24861,7 +25034,21 @@ Use this attribute to selectively disable publication of metrics in some environ
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Cookie path parameter value which, if set, will be used for the session and state cookies. It may need to be set when the redirect path has a root different to that of the original request URL.</p>
+<p>Cookie path parameter value which, if set, will be used for the session, state and post logout cookies. It may need to be set when the redirect path has a root different to that of the original request URL.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-oidc_quarkus.oidc.authentication.cookie-domain"></a><code><a href="#quarkus-oidc_quarkus.oidc.authentication.cookie-domain">quarkus.oidc.authentication.cookie-domain</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Cookie domain parameter value which, if set, will be used for the session, state and post logout cookies.</p>
 </div>
 </div>
 </div></div></td>
@@ -25558,7 +25745,21 @@ Use this attribute to selectively disable publication of metrics in some environ
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Cookie path parameter value which, if set, will be used for the session and state cookies. It may need to be set when the redirect path has a root different to that of the original request URL.</p>
+<p>Cookie path parameter value which, if set, will be used for the session, state and post logout cookies. It may need to be set when the redirect path has a root different to that of the original request URL.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-oidc_quarkus.oidc.-tenant-.authentication.cookie-domain"></a><code><a href="#quarkus-oidc_quarkus.oidc.-tenant-.authentication.cookie-domain">quarkus.oidc."tenant".authentication.cookie-domain</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Cookie domain parameter value which, if set, will be used for the session, state and post logout cookies.</p>
 </div>
 </div>
 </div></div></td>
@@ -28490,7 +28691,7 @@ TCP</code> or <code>org.jboss.logmanager.handlers.SyslogHandler.Protocol#SSL_TCP
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Whether or not JAX-RS metrics should be enabled if the Metrics capability is present and Vert.x is being used.</p>
+<p>Whether or not detailed JAX-RS metrics should be enabled if the smallrye-metrics extension is present. See <a href="https://github.com/eclipse/microprofile-metrics/blob/2.3.x/spec/src/main/asciidoc/required-metrics.adoc#optional-rest">MicroProfile Metrics: Optional REST metrics</a>. Deprecated. Use <code>quarkus.smallrye-metrics.jaxrs.enabled</code>.</p>
 </div>
 </div>
 </div></div></td>
@@ -29481,6 +29682,20 @@ TCP</code> or <code>org.jboss.logmanager.handlers.SyslogHandler.Protocol#SSL_TCP
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon"><i class="fa fa-lock" title="Fixed at build time"></i></span> <a id="quarkus-smallrye-metrics_quarkus.smallrye-metrics.jaxrs.enabled"></a><code><a href="#quarkus-smallrye-metrics_quarkus.smallrye-metrics.jaxrs.enabled">quarkus.smallrye-metrics.jaxrs.enabled</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Whether or not detailed JAX-RS metrics should be enabled. See <a href="https://github.com/eclipse/microprofile-metrics/blob/2.3.x/spec/src/main/asciidoc/required-metrics.adoc#optional-rest">MicroProfile Metrics: Optional REST metrics</a>.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><a id="quarkus-smallrye-openapi_quarkus-smallrye-openapi-smallrye-openapi"></a><a href="#quarkus-smallrye-openapi_quarkus-smallrye-openapi-smallrye-openapi">SmallRye OpenAPI</a></p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Type</p></th>
 <th class="tableblock halign-left valign-middle"><p class="tableblock">Default</p></th>
@@ -29539,7 +29754,7 @@ TCP</code> or <code>org.jboss.logmanager.handlers.SyslogHandler.Protocol#SSL_TCP
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Whether or not Reactive Messaging metrics are published in case the smallrye-metrics extension is present (default to false).</p>
+<p>Whether or not Reactive Messaging metrics are published in case a metrics extension is present (default to false).</p>
 </div>
 </div>
 </div></div></td>

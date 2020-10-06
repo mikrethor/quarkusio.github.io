@@ -100,6 +100,7 @@
 </li>
 <li><a href="#testing-the-application">Testing the Application</a></li>
 <li><a href="#redirection">Redirection</a></li>
+<li><a href="#oidc-cookies">Dealing with Cookies</a></li>
 <li><a href="#logout">Logout</a>
 <ul class="sectlevel2">
 <li><a href="#user-initiated-logout">User-Initiated Logout</a></li>
@@ -405,6 +406,52 @@ In such cases a <code>quarkus.oidc.authentication.redirect-path</code> property 
 </div>
 </div>
 <div class="sect1">
+<h2 id="oidc-cookies"><a class="anchor" href="#oidc-cookies"></a>Dealing with Cookies</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The OIDC adapter uses cookies to keep the session, code flow and post logout state.</p>
+</div>
+<div class="paragraph">
+<p>If you access the protected resources with overlapping or different roots, for example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>/index.html</code> and <code>/web-app/service</code></p>
+</li>
+<li>
+<p><code>/web-app/service1</code> and <code>/web-app/service2</code></p>
+</li>
+<li>
+<p><code>/web-app1/service</code> and <code>/web-app2/service</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>then most likely you also need to set a <code>quarkus.oidc.authentication.cookie-path</code> property to a path value that is common to all of them, such as <code>/</code> or <code>/web-app</code>, etc.</p>
+</div>
+<div class="paragraph">
+<p>Otherwise the browser cache manager may keep request path specific cookies which in turn may lead to some difficult to diagnoze errors. For example, an authorization code flow may fail due to a missing state cookie if a user has initially accessed <code>/index.html</code> but configured a callback URI to <code>/web-app/callback</code>.</p>
+</div>
+<div class="paragraph">
+<p>If your application is deployed across multiple domains, make sure to set a <code>quarkus.oidc.authentication.cookie-domain</code> property for the session cookie be visible to all protected Quarkus services, for example, if you have 2 services deployed at:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://whatever.wherever.company.net/" class="bare">https://whatever.wherever.company.net/</a></p>
+</li>
+<li>
+<p><a href="https://another.address.company.net/" class="bare">https://another.address.company.net/</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>then the <code>quarkus.oidc.authentication.cookie-domain</code> property must be set to <code>company.net</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="logout"><a class="anchor" href="#logout"></a>Logout</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -430,6 +477,31 @@ For example, if the endpoint address is <code><a href="https://application.com/w
 </div>
 <div class="paragraph">
 <p>Note that a cookie name will vary when using <a href="security-openid-connect-multitenancy">OpenID Connect Multi-Tenancy</a>. For example, it will be named <code>q_post_logout_tenant_1</code> for a tenant with a <code>tenant_1</code> id, etc.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example of how to configure an RP initiated logout flow:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">quarkus.oidc.auth-server-url=http://localhost:8180/auth/realms/quarkus
+quarkus.oidc.client-id=frontend
+quarkus.oidc.application-type=web-app
+
+quarkus.oidc.tenant-logout.logout.path=/logout
+quarkus.oidc.tenant-logout.logout.post-logout-path=/postlogout
+
+# Only the authenticated users can initiate a logout:
+quarkus.http.auth.permission.authenticated.paths=/logout
+quarkus.http.auth.permission.authenticated.policy=authenticated
+
+# Logged out users should be returned to the /welcome.html site which will offer an option to re-login:
+quarkus.http.auth.permission.authenticated.paths=/welcome.html
+quarkus.http.auth.permission.authenticated.policy=permit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You may also need to set <code>quarkus.oidc.authentication.cookie-path</code> to a path value common to all of the application resources which is <code>/</code> in this example.
+See <a href="#oidc-cookies">Dealing with Cookies</a> for more information.</p>
 </div>
 </div>
 </div>
@@ -1176,7 +1248,21 @@ This will make an <code>io.quarkus.oidc.UserInfo</code> (which is a simple <code
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Cookie path parameter value which, if set, will be used for the session and state cookies. It may need to be set when the redirect path has a root different to that of the original request URL.</p>
+<p>Cookie path parameter value which, if set, will be used for the session, state and post logout cookies. It may need to be set when the redirect path has a root different to that of the original request URL.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-oidc_quarkus.oidc.authentication.cookie-domain"></a><code><a href="#quarkus-oidc_quarkus.oidc.authentication.cookie-domain">quarkus.oidc.authentication.cookie-domain</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Cookie domain parameter value which, if set, will be used for the session, state and post logout cookies.</p>
 </div>
 </div>
 </div></div></td>
@@ -1873,7 +1959,21 @@ This will make an <code>io.quarkus.oidc.UserInfo</code> (which is a simple <code
 <div class="openblock description">
 <div class="content">
 <div class="paragraph">
-<p>Cookie path parameter value which, if set, will be used for the session and state cookies. It may need to be set when the redirect path has a root different to that of the original request URL.</p>
+<p>Cookie path parameter value which, if set, will be used for the session, state and post logout cookies. It may need to be set when the redirect path has a root different to that of the original request URL.</p>
+</div>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="quarkus-oidc_quarkus.oidc.-tenant-.authentication.cookie-domain"></a><code><a href="#quarkus-oidc_quarkus.oidc.-tenant-.authentication.cookie-domain">quarkus.oidc."tenant".authentication.cookie-domain</a></code></p>
+</div>
+<div class="openblock description">
+<div class="content">
+<div class="paragraph">
+<p>Cookie domain parameter value which, if set, will be used for the session, state and post logout cookies.</p>
 </div>
 </div>
 </div></div></td>
