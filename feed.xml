@@ -5,7 +5,21 @@
         <title>Quarkus</title>
         <link>https://quarkus.io</link>
         <description>Quarkus: Supersonic Subatomic Java</description>
-        <lastBuildDate>Mon, 05 Oct 2020 09:06:52 +0000</lastBuildDate>
+        <lastBuildDate>Tue, 06 Oct 2020 09:06:53 +0000</lastBuildDate>
+        
+        <item>
+            <title>Emitter - Bridging the imperative and the reactive worlds</title>
+            <link>
+                https://quarkus.io/blog/reactive-messaging-emitter/
+            </link>
+            <description>
+                In a previous blog post about Kafka and Avro, we used an emitter to send Kafka messages. In this post, we are going look at this emitter construct a little bit more closely. Injecting an Emitter Injecting an emitter is straightforward. You indicate the targeted channel, i.e., where do you...
+            </description>
+            <pubDate>Tue, 06 Oct 2020 00:00:00 +0000</pubDate>
+            <guid>
+                https://quarkus.io/blog/reactive-messaging-emitter/
+            </guid>
+        </item>
         
         <item>
             <title>Contributing to Quarkus for the first time</title>
@@ -130,20 +144,6 @@
             <pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate>
             <guid>
                 https://quarkus.io/blog/quarkus-1-8-0-final-released/
-            </guid>
-        </item>
-        
-        <item>
-            <title>Handling paginated APIs with Mutiny</title>
-            <link>
-                https://quarkus.io/blog/mutiny-pagination/
-            </link>
-            <description>
-                At the beginning of the Mutiny adventure, my friend Alex came to me with an interesting problem. Alex wanted to retrieve data from a REST service in a reactive manner. So far, no problem, we have everything for this in our toolbox. But, this service, as many services, is using...
-            </description>
-            <pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate>
-            <guid>
-                https://quarkus.io/blog/mutiny-pagination/
             </guid>
         </item>
         
